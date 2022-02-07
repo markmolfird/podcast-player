@@ -1,6 +1,6 @@
 Podcast Player Prime provides a nice and easy-to-use platform for listening to your favorite podcast, plus plenty of settings to suit the player to your needs.
 
-Key features:
+Key features:  
 a. Includes a built-in music player to play and manage your favorite podcasts.  
 b. Includes a built-in downloader, to download the desired audio tracks in any podcast.  
 c. Has a nice color-palette which can be used for adjusting the THEME color.  
