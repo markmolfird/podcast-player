@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Podcast Player Prime</title>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  </head>
+  <body>
+    <div class="container">
+      <div class="content" style="display: none">
+        <div class="I-tab">
+          <table class="top-controls">
+            <tr>
+              <td title="Refresh podcasts"><button type="refresh"><i class="fa fa-retweet"></i></button></td>
+              <td title="Player"><button type="back"><i class="fa fa-music"></i></button></td>
+              <td title="Add"><button type="add"><i class="fa fa-plus-circle"></i></button></td>
+              <td title="Edit"><button type="settings"><i class="fa fa-pencil-square-o"></i></button></td>
+              <td title="Settings"><button type="options"><i class="fa fa-cog"></i></button></td>
+              <td title="Reload UI"><button type="reload"><i class="fa fa-refresh"></i></button></td>
+            </tr>
+          </table>
+          <table class="top-controls intro">
+            <tr>
+              <td id="donation" title="Make a donation"><button class="transparent"><i class="fa fa-heart"></i></button></td>
+              <td id="svglogo">
+                <svg width="78" height="78" viewBox="0 0 135.46496 135.46496">
+                  <circle style="fill: #FFFFFF" cx="67.737144" cy="67.730606" r="65"/>
+                  <path d="M 258.57227,3.2578125 C 205.47866,2.7710578 152.88657,18.500896 110.38477,49.291016 74.435812,75.334046 45.742537,107.64001 26.789062,148.51367 15.536433,172.78019 3.2675781,211.76413 3.2675781,246.48438 3.2675781,280.1916 5.9220867,311.12038 17.960938,341.71094 21.095618,349.6759 23.454264,356.32697 27.179688,363.73438 44.157376,397.49453 66.55846,428.4213 96.320312,451.95312 L 123.38477,471.17383 C 141.27667,481.95873 158.03903,489.94945 177.83789,496.55664 184.89616,498.91404 195.15615,501.49271 202.55859,503.07812 254.36546,514.17757 314.3852,509.25902 361.58594,485.625 391.84953,470.47242 412.30064,457.04494 435.7207,433.63867 490.61665,378.77931 523.26318,290.52447 502.42578,199.73828 495.21394,168.32041 482.64748,140.61968 465.16797,114.34766 456.9664,102.02139 447.14014,90.610343 437.46484,79.568359 431.52433,72.788644 403.92475,50.675157 395.5293,45.136719 L 365.26758,27.958984 C 348.05476,21.029892 342.77738,17.053156 320.55469,11.347656 300.19983,6.1214331 279.34803,3.4482817 258.57227,3.2578125 Z M 255.6678,82.73337 C 279.3249,82.638587 302.99042,88.827633 322.17447,101.43795 330.79012,107.10114 339.9915,114.00613 345.83859,120.41379 349.30814,124.21636 362.20117,139.11246 363.5603,145.23323 361.44829,147.27944 343.55364,162.43354 339.8694,164.1806 337.25973,161.07959 334.88978,157.83112 332.3648,154.71194 326.1013,146.97566 315.12221,138.87991 306.10537,133.37187 276.58445,115.34055 234.65962,116.10556 205.14148,133.52926 194.2991,139.92857 176.63473,154.56964 172.62823,164.47696 167.55887,162.27339 153.76771,149.62551 147.72005,145.08421 156.77722,127.40993 172.77215,112.48642 189.21472,101.73097 208.36253,89.205733 232.0107,82.828154 255.6678,82.73337 Z M 369.72707,154.80738 C 370.85478,159.49899 373.364,163.85043 374.86241,168.7768 380.74171,188.11053 380.98029,198.56914 380.98231,219.27129 L 356.91466,218.84432 C 356.25871,197.59919 351.65723,190.71539 345.71468,173.9992 348.81189,170.79049 366.25949,156.29666 369.72707,154.80738 Z M 142.47251,155.18746 C 145.39692,156.23397 164.57715,172.12799 165.94408,173.9992 163.75531,180.60965 160.28651,186.61509 158.13473,194.66785 156.08061,202.35764 155.99764,212.65029 154.0576,219.10385 L 130.91757,219.28133 C 129.42399,201.26148 133.6778,168.08577 142.47251,155.18746 Z M 262.03047,167.73365 C 277.43828,167.73365 291.25525,179.30871 296.1143,192.12947 297.3226,195.31745 299.49086,203.63998 299.16504,207.85364 298.56154,215.67119 295.94657,224.1191 291.66713,230.02588 283.85064,240.81626 273.02828,246.71952 258.99313,246.71952 226.0798,246.71952 207.94857,205.12518 231.07105,180.06383 240.01046,170.3746 249.31348,167.73365 262.03047,167.73365 Z M 362.57242,229.27576 C 391.4768,229.06515 418.13756,237.97259 419.70251,273.41931 403.80672,276.09051 390.18038,289.58128 384.05145,300.50921 375.78544,315.24504 374.10272,333.00768 374.8373,352.67643 L 365.23803,353.11846 C 364.3048,369.05985 365.1434,399.4342 365.09237,418.01772 365.06894,426.57497 367.04454,433.06803 357.28638,431.14157 353.56811,423.2286 356.70705,362.56142 355.65217,352.72163 351.65575,352.74082 352.36218,353.46623 350.00781,351.55627 L 350.11329,229.87351 C 354.26748,229.52207 358.44321,229.30584 362.57242,229.27576 Z M 144.67769,229.45827 C 150.1136,229.47485 155.77142,229.70066 161.64425,229.71444 L 161.66937,352.76015 136.82815,352.72332 C 138.63465,310.99763 125.48531,283.00492 91.959598,273.17652 92.64561,254.69698 101.66485,243.72131 112.06062,236.85068 121.82859,230.39465 132.71866,229.42176 144.67769,229.45827 Z M 259.24094,265.53797 C 276.75339,265.66313 294.34092,273.77718 304.22001,290.13137 306.66873,294.18456 309.51275,301.32506 309.51275,307.50313 L 308.68561,416.0386 H 208.78663 V 306.24399 C 208.78663,299.99103 212.17522,293.02321 214.71563,288.88227 224.29098,273.27717 241.7285,265.4128 259.24094,265.53797 Z M 97.136804,286.38241 C 120.49026,294.84951 126.79018,322.76046 126.54406,345.96717 98.328984,339.53553 95.0472,310.74139 97.136804,286.38241 Z M 414.72791,286.53478 414.7547,298.98385 C 414.78094,322.27286 406.97641,341.00457 385.06614,345.94205 385.17662,323.007 390.22733,294.64566 414.72791,286.53478 Z" transform="scale(0.26458)"/>
+                </svg>
+              </td>
+              <td id="support" title="Open support page"><button class="transparent"><i class="fa fa-info"></i></button></td>
+            </tr>
+          </table>
+          <div class="podcast-tile clearcache"></div>
+          <div class="how-to-work-hide">
+            <table class="item-h item-h-q"><tr><td class="item-description"><p><i class="fa fa-headphones"></i> Podcast Player Prime :: About</p></td></tr></table>
+            <table class="item-h item-h-a">
+              <tr><td class="item-description"><p>Podcast Player Prime is a lite and easy-to-use app, designed to play and download audio podcasts. It has a built-in search tool that uses the iTunes database to search for specific keywords. Moreover, you can add a podcast feed by a feed URL. Also, there is a - topchart - section which you can use to add a few pre-defined and popular podcast episodes. Each of these features is explained in the following.</p></td></tr>
+              <tr><td class="item-description"><p>In Podcast Player Prime, you can adjust several settings, including the app theme color. There is a handy color palette in the settings tab which you can use to select different colors for various parts of the app. Moreover, there are some general settings to change the player's behavior. For managing downloaded items, including image, audio, etc., there is a CACHE section to view or delete a cached item(s). Please read below to get more info about each section in this app. You can also visit app's homepage to get detailed instruction of how to work with Podcast Player Prime.</p></td></tr>
+              <tr><td class="item-description"><p>Please note, Podcast Player Prime is still in beta and may not work properly for all podcasts (various audio formats). Plus, you may see some bugs in different functions (i.e. player, color palette, cache, etc.). This project is still on active development; in future versions, support for video podcasts will be added. If you see any bugs or have a feature request in your mind or other suggestions for this app, please use the bug report form to report bugs or other suggestions.</p></td></tr>
+            </table>
+            <table class="item-h item-h-q"><tr><td class="item-description"><p><i class="fa fa-question-circle"></i> Podcast Player Prime :: How to work</p></td></tr></table>
+            <table class="item-h item-h-a">
+              <tr><td class="item-description"><p>Podcast Player Prime has five main tabs (pages) plus the current tab which you can open from the buttons in the top toolbar. At the top toolbar, there are five main buttons and one reload button; from right to left, there is a reload button to reload the app UI. Next, there are settings, manage, add, player, and refresh tabs. The refresh button is for reloading all podcast data (including feeds & images)</p></td></tr>
+            </table>
+            <table class="item-h item-h-q"><tr><td class="item-description"><p><i class="fa fa-home"></i> Podcast Player Prime :: Front tab (homepage)</p></td></tr></table>
+            <table class="item-h item-h-a">
+            <tr><td class="item-description"><p>The front tab or Homepage is where you can see all your subscribed podcasts. If there is no subscribed podcast (i.e. when you first install the app), this help section is shown instead. To start adding a podcast, please follow these 4 steps.</p></td></tr>
+              <tr><td class="item-description"><p>1. Please press on the PLUS sign (+) button from the top banner to open the add-new-podcast page (to search for the new item(s)).</p></td></tr>
+              <tr><td class="item-description"><p>2. In the new page, click on the - Search - tab (or any other tabs, depending on your need (i.e. Top Chart, Add Feed or Subscribed podcasts).</p></td></tr>
+              <tr><td class="item-description"><p>3. In the search Tab, type-in your keyword (i.e. ted, radio, etc.) and wait to see the results (if there is any). If you see the search button is spinning, the app is fetching new data from the iTunes server. Once the results are shown, hit the small - mark - icon next to each podcast to add it to the subscribed list. The item will be saved and listed in the - Subscribed - podcasts tab. Once you added all your desired items to the subscribed list, please press on the home button from the top toolbar to open the front page.</p></td></tr>
+              <tr><td class="item-description"><p>4. As mentioned above, pressing on the home button will open the front page with all your subscribed items listed. Please click on an item on the front page to open it on the player page. Within the player page, you will see the player toolbar and all episodes for the current podcast. Each episode has 3 buttons. From the left, there is a play button. On the right, there are add-to-playlist (top) and mark-as-seen (bottom) buttons. The main player at the top has 5 main and, an extra 4 buttons (click on the down-arrow to see the extra buttons). These buttons are self-explanatory as they are standard in all medial players.</p></td></tr>
+              <tr><td class="item-description"><p>5. The big podcast image is shown at the top empty area on the player page. You can also see the current and total time next to the home button. Clicking on the home button directs you to the front page, where you can see all the subscribed podcasts. To edit the list, please hit the plus button again. If you want to view/manage the cache or adjust other settings, please read the following sections.</p></td></tr>
+              <tr><td class="item-description"><p>6. By default, Podcast Player Prime fetches maximum 15 episodes for each podcast. If you want to increase this number, please go to the settings page and adjust this max value based on your needs. Please note, increasing the number to the values greater than 100, may slow down the app's performance.</p></td></tr>
+            </table>
+            <table class="item-h item-h-q"><tr><td class="item-description"><p><i class="fa fa-cog"></i> Podcast Player Prime :: Settings tab</p></td></tr></table>
+            <table class="item-h item-h-a">
+              <tr><td class="item-description"><p>Within the settings tab, there are 4 main buttons. The first one is for adjusting the theme color. You can change the color for all the elements in the app. If you click on this button, a color-palette appears. With this color palette, you can change the color for the fonts, buttons, and background color. Simply click on the - font - button and choose your desired color from the palette. Next, click on the - button - and choose the desired color for all buttons. Similarly, choose a color for the - background - color. All these colors are saved to memory. There is also a slider that can be used for adjusting the color for all unselected buttons as-well-as some title areas. Other than the color palette, you can choose a few pre-defined themes placed at the bottom of the theme color page. At the moment, there are 5 themes to choose from.</p></td></tr>
+              <tr><td class="item-description"><p>The next tab on this page is the general settings where you can adjust several options according to your needs. The third tab is the cache settings where it shows the cached items for all the podcasts, images, audio and video items. Please note, deleting a cache item, completely removes it from the disk and this operating is irreversible. There is also a big trash button at the top, where you can use to delete all cached items in each category (podcast, image, audio or video). The last tab is for the Kernel logs (may be used for detecting internal errors or fixing app's bugs). While performing any operation within the app, you can visit this tab to get more info about what is being done behind-the-scenes. Once you are done with the settings page, press on the home button to open the front page.</p></td></tr>
+            </table>
+            <table class="item-h item-h-q"><tr><td class="item-description"><p><i class="fa fa-tasks"></i> Podcast Player Prime :: Manage tab</p></td></tr></table>
+            <table class="item-h item-h-a">
+              <tr><td class="item-description"><p>The button next to the settings is the manage button. Click on the manage button to see your downloaded tracks, playlist items, and marked-as-seen tracks. Next to each item, there is a remove button that you can use to delete the item from the corresponding list.</p></td></tr>
+            </table>
+            <table class="item-h item-h-q"><tr><td class="item-description"><p><i class="fa fa-music"></i> Podcast Player Prime :: Player tab</p></td></tr></table>
+            <table class="item-h item-h-a">
+              <tr><td class="item-description"><p>Once you go the front page, the fifth button from the top toolbar opens the player page. In the beginning when there is no subscribed podcast, this page in empty. But if you add a podcast to the subscribed list, you will see the subscribed podcast and all the episodes on the player page. Within the player page, there are two sections. The top section shows the main player buttons and podcast image.</p></td></tr>
+              <tr><td class="item-description"><p>The main player has a big play button. Once pressed, it will play the last episode. Please note, you need to first select an episode from the bottom list and then use this big play button to play or pause any item, otherwise, it shows you an error. There are also forward and backward buttons as well as fast-forward and fast-background buttons within the main player section.</p></td></tr>
+              <tr><td class="item-description"><p>At the bottom, all the episodes are listed for the current podcast (in card-view). Each episode item has 3 buttons. From the left, there is a play button that you can use to play the podcast. On the top-right there is an add-to-playlist button, to add the current track to the playlist. The last button is for mark-as-read, if pressed, the item will be marked as read and removed from the current list. You can show all the mark-as-seen items by pressing on the - eye - icon within the main player section (click on the small down-arrow in the main player to see the eye icon and all the other hidden icons).</p></td></tr>
+            </table>
+            <table class="item-h item-h-q"><tr><td class="item-description"><p><i class="fa fa-refresh"></i> Podcast Player Prime :: Refresh Button</p></td></tr></table>
+            <table class="item-h item-h-a">
+              <tr><td class="item-description"><p>Use the refresh button to reload data and images for all your subscribed podcasts. Please note, this button only updates the data related to the subscribed podcasts, and has no effect on other podcasts such as the searched items or the top chart list. To update data for a specific podcast, please head to the front page (press home button) and then press the refresh button at the bottom-right corner for each podcast item. Wait for few seconds for the podcast data to be updated.</p></td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="II-tab">
+          <table class="top-controls">
+            <tr>
+              <td><div type="currenttime">00:00:00</div></td>
+              <td><button type="back" class="big-font"><i class="fa fa-home"></i></button></td>
+              <td><div id="podcast-duration" type="duration">00:00:00</div></td>
+            </tr>
+          </table>
+          <table class="title title-images">
+            <tr>
+              <td class="hidden"><p id="podcast-title">Podcast Player Prime</p></td>
+              <td class="podcast-image"></td>
+              <td class="hidden">
+                <svg width="256" height="256" viewBox="0 0 135.46496 135.46496">
+                  <circle style="fill: #FFFFFF" cx="67.737144" cy="67.730606" r="65"/>
+                  <path d="M 258.57227,3.2578125 C 205.47866,2.7710578 152.88657,18.500896 110.38477,49.291016 74.435812,75.334046 45.742537,107.64001 26.789062,148.51367 15.536433,172.78019 3.2675781,211.76413 3.2675781,246.48438 3.2675781,280.1916 5.9220867,311.12038 17.960938,341.71094 21.095618,349.6759 23.454264,356.32697 27.179688,363.73438 44.157376,397.49453 66.55846,428.4213 96.320312,451.95312 L 123.38477,471.17383 C 141.27667,481.95873 158.03903,489.94945 177.83789,496.55664 184.89616,498.91404 195.15615,501.49271 202.55859,503.07812 254.36546,514.17757 314.3852,509.25902 361.58594,485.625 391.84953,470.47242 412.30064,457.04494 435.7207,433.63867 490.61665,378.77931 523.26318,290.52447 502.42578,199.73828 495.21394,168.32041 482.64748,140.61968 465.16797,114.34766 456.9664,102.02139 447.14014,90.610343 437.46484,79.568359 431.52433,72.788644 403.92475,50.675157 395.5293,45.136719 L 365.26758,27.958984 C 348.05476,21.029892 342.77738,17.053156 320.55469,11.347656 300.19983,6.1214331 279.34803,3.4482817 258.57227,3.2578125 Z M 255.6678,82.73337 C 279.3249,82.638587 302.99042,88.827633 322.17447,101.43795 330.79012,107.10114 339.9915,114.00613 345.83859,120.41379 349.30814,124.21636 362.20117,139.11246 363.5603,145.23323 361.44829,147.27944 343.55364,162.43354 339.8694,164.1806 337.25973,161.07959 334.88978,157.83112 332.3648,154.71194 326.1013,146.97566 315.12221,138.87991 306.10537,133.37187 276.58445,115.34055 234.65962,116.10556 205.14148,133.52926 194.2991,139.92857 176.63473,154.56964 172.62823,164.47696 167.55887,162.27339 153.76771,149.62551 147.72005,145.08421 156.77722,127.40993 172.77215,112.48642 189.21472,101.73097 208.36253,89.205733 232.0107,82.828154 255.6678,82.73337 Z M 369.72707,154.80738 C 370.85478,159.49899 373.364,163.85043 374.86241,168.7768 380.74171,188.11053 380.98029,198.56914 380.98231,219.27129 L 356.91466,218.84432 C 356.25871,197.59919 351.65723,190.71539 345.71468,173.9992 348.81189,170.79049 366.25949,156.29666 369.72707,154.80738 Z M 142.47251,155.18746 C 145.39692,156.23397 164.57715,172.12799 165.94408,173.9992 163.75531,180.60965 160.28651,186.61509 158.13473,194.66785 156.08061,202.35764 155.99764,212.65029 154.0576,219.10385 L 130.91757,219.28133 C 129.42399,201.26148 133.6778,168.08577 142.47251,155.18746 Z M 262.03047,167.73365 C 277.43828,167.73365 291.25525,179.30871 296.1143,192.12947 297.3226,195.31745 299.49086,203.63998 299.16504,207.85364 298.56154,215.67119 295.94657,224.1191 291.66713,230.02588 283.85064,240.81626 273.02828,246.71952 258.99313,246.71952 226.0798,246.71952 207.94857,205.12518 231.07105,180.06383 240.01046,170.3746 249.31348,167.73365 262.03047,167.73365 Z M 362.57242,229.27576 C 391.4768,229.06515 418.13756,237.97259 419.70251,273.41931 403.80672,276.09051 390.18038,289.58128 384.05145,300.50921 375.78544,315.24504 374.10272,333.00768 374.8373,352.67643 L 365.23803,353.11846 C 364.3048,369.05985 365.1434,399.4342 365.09237,418.01772 365.06894,426.57497 367.04454,433.06803 357.28638,431.14157 353.56811,423.2286 356.70705,362.56142 355.65217,352.72163 351.65575,352.74082 352.36218,353.46623 350.00781,351.55627 L 350.11329,229.87351 C 354.26748,229.52207 358.44321,229.30584 362.57242,229.27576 Z M 144.67769,229.45827 C 150.1136,229.47485 155.77142,229.70066 161.64425,229.71444 L 161.66937,352.76015 136.82815,352.72332 C 138.63465,310.99763 125.48531,283.00492 91.959598,273.17652 92.64561,254.69698 101.66485,243.72131 112.06062,236.85068 121.82859,230.39465 132.71866,229.42176 144.67769,229.45827 Z M 259.24094,265.53797 C 276.75339,265.66313 294.34092,273.77718 304.22001,290.13137 306.66873,294.18456 309.51275,301.32506 309.51275,307.50313 L 308.68561,416.0386 H 208.78663 V 306.24399 C 208.78663,299.99103 212.17522,293.02321 214.71563,288.88227 224.29098,273.27717 241.7285,265.4128 259.24094,265.53797 Z M 97.136804,286.38241 C 120.49026,294.84951 126.79018,322.76046 126.54406,345.96717 98.328984,339.53553 95.0472,310.74139 97.136804,286.38241 Z M 414.72791,286.53478 414.7547,298.98385 C 414.78094,322.27286 406.97641,341.00457 385.06614,345.94205 385.17662,323.007 390.22733,294.64566 414.72791,286.53478 Z" transform="scale(0.26458)"/>
+                </svg>
+              </td>
+            </tr>
+          </table>
+          <table class="title title-flip">
+            <tr>
+              <td><button slide="2"></button></td>
+              <td><button slide="1" selected=true></button></td>
+              <td><button slide="0"></button></td>
+            </tr>
+          </table>
+          <table class="player-controls">
+            <tr>
+              <td type="range" colspan=5>
+                <audio></audio>
+                <input type="range" rule="player" min="0" max="100" value="0" step="0.001"></input>
+              </td>
+            </tr>
+            <tr>
+              <td class="left" type="expand" rule="visibility"><i class="fa fa-angle-down"></i></td>
+              <td class="right"><button type="backward"><i class="fa fa-backward"></i></button><button type="f-backward"><i class="fa fa-fast-backward"></i></button></td>
+              <td class="center"><button class="large" type="play"><i class="fa fa-play"></i></button></td>
+              <td class="left"><button type="f-forward"><i class="fa fa-fast-forward"></i></button><button type="forward"><i class="fa fa-forward"></i></button></td>
+              <td class="right" type="expand" rule="visibility"><i class="fa fa-angle-down"></i></td>
+            </tr>
+            <tr class="footer hidden visuallyhidden">
+              <td colspan=2 class="left"><button type="speed"><i class="fa fa-angle-double-right"></i></button><button type="seen"><i class="fa fa-eye-slash"></i></button></td>
+              <td class="center"><i id="podcast-seen" class="fa fa-eye-slash"> Hide read</i></td>
+              <td colspan=2 class="right"><button type="mute"><i class="fa fa-volume-up"></i></button><button type="sleep"><i class="fa fa-clock-o"></i></button></td>
+            </tr>
+            <tr class="footer hidden visuallyhidden">
+              <td colspan=2 class="left"><i id="podcast-speed" class="fa fa-angle-double-right"> Speed: 1.0x</i></td>
+              <td class="center"></td>
+              <td colspan=2 class="right"><i id="podcast-sleep" class="fa fa-clock-o"> Timer: OFF</i></td>
+            </tr>
+          </table>
+          <div class="podcast-list clearcache"></div>
+        </div>
+        <div class="III-tab">
+          <table class="top-controls">
+            <tr>
+              <td><button type="back"><i class="fa fa-music"></i></button></td>
+              <td><button type="home"><i class="fa fa-home"></i></button></td>
+            </tr>
+          </table>
+          <table class="main-controls">
+            <tr>
+              <td><button type="search"><i class="fa fa-search"></i><p>Search</p></button></td>
+              <td><button type="feed"><i class="fa fa-feed"></i><p>Add Feed</p></button></td>
+              <td><button type="topchart"><i class="fa fa-list-ul"></i><p>Top Chart</p></button></td>
+              <td><button type="subscribed"><i class="fa fa-bookmark"></i><p>Subscribed</p></button></td>
+            </tr>
+          </table>
+          <div class="podcast-tile clearcache"></div>
+        </div>
+        <div class="IIII-tab">
+          <table class="top-controls">
+            <tr>
+              <td><button type="back"><i class="fa fa-music"></i></button></td>
+              <td><button type="home"><i class="fa fa-home"></i></button></td>
+            </tr>
+          </table>
+          <table class="main-controls">
+            <tr>
+              <td><button type="seen"><i class="fa fa-eye"></i><p>Marked As Read</p></button></td>
+              <td><button type="playlist"><i class="fa fa-list-ul"></i><p>Added to Playlist</p></button></td>
+              <td><button type="downloaded"><i class="fa fa-floppy-o"></i><p>Downloaded Tracks</p></button></td>
+            </tr>
+          </table>
+          <table class="item-c litecolor">
+            <tr>
+              <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+              <td class="item-options">Manage items in each category (review or remove)</td>
+            </tr>
+          </table>
+          <div class="podcast-list clearcache"></div>
+        </div>
+        <div class="IIIII-tab">
+          <table class="top-controls">
+            <tr>
+              <td><button type="back"><i class="fa fa-music"></i></button></td>
+              <td><button type="home"><i class="fa fa-home"></i></button></td>
+            </tr>
+          </table>
+          <table class="main-controls">
+            <tr>
+              <td><button type="log"><i class="fa fa-terminal"></i><p>Kernel Logs</p></button></td>
+              <td><button disabled type="cache"><i class="fa fa-floppy-o"></i><p>Manage Cache</p></button></td>
+              <td><button type="general"><i class="fa fa-wrench"></i><p>General Settings</p></button></td>
+              <td><button type="color"><i class="fa fa-paint-brush"></i><p>Theme Color</p></button></td>
+            </tr>
+          </table>
+          <div rule="options" type="color" class="podcast-tile">
+            <table class="item-c litecolor titlecolor">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">Adjust button, background and font color</td>
+              </tr>
+            </table>
+            <table class="item-c transparent" type="choose">
+              <tr>
+                <td><button type="choose" rule="font"><p>Font</p></button></td>
+                <td><button type="choose" rule="button"><p>Button</p></button></td>
+                <td><button type="choose" rule="background"><p>Background</p></button></td>
+              </tr>
+            </table>
+            <table class="item-c transparent" type="palette">
+              <tr>
+                <td class="item-options" type="color-black"></td>
+                <td class="item-options" type="color-full"></td>
+                <td class="item-options" type="color-basic"></td>
+              </tr>
+            </table>
+            <table class="item-c transparent" type="choose">
+              <tr>
+                <td><input type="range" rule="color" name="intensity" min='0' max='90' value='20' step='1'></input></td>
+              </tr>
+            </table>
+            <table class="item-c transparent" type="choose">
+              <tr>
+                <td><button type="theme" background="rgb(255, 255, 255)" button="rgb(255, 153, 0)" font="rgb(32, 32, 32)" intensity="10"><p>Default</p></button></td>
+                <td><button type="theme" background="rgb(128, 128, 128)" button="rgb(255, 153, 0)" font="rgb(240, 240, 240)" intensity="70"><p>Theme #1</p></button></td>
+                <td><button type="theme" background="rgb(96, 96, 96)" button="rgb(0, 102, 204)" font="rgb(240, 240, 240)" intensity="60"><p>Theme #2</p></button></td>
+                <td><button type="theme" background="rgb(64, 64, 64)" button="rgb(255, 106, 0)" font="rgb(240, 240, 240)" intensity="20"><p>Theme #3</p></button></td>
+                <td><button type="theme" background="rgb(240, 240, 240)" button="rgb(0, 148, 255)" font="rgb(32, 32, 32)" intensity="20"><p>Theme #4</p></button></td>
+                <td><button type="theme" background="rgb(192, 192, 192)" button="rgb(255, 51, 204)" font="rgb(240, 240, 240)" intensity="75"><p>Theme #5</p></button></td>
+              </tr>
+            </table>
+          </div>
+          <div rule="options" type="general" class="podcast-tile">
+            <table class="item-c litecolor titlecolor">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-wrench"></i></td>
+                <td class="item-options item-h-q">Adjust general settings</td>
+              </tr>
+            </table>
+            <table class="item-c">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">Mark episodes as seen when the end is reached</td>
+                <td class="item-checkbox"><input id="markAsSeen" type="checkbox"></input></td>
+              </tr>
+            </table>
+            <table class="item-c">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options"></td>
+                <td class="item-checkbox"><input id="autoRefresh" type="checkbox"></input></td>
+              </tr>
+            </table>
+            <table class="item-c">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-clock-o"></i></td>
+                <td class="item-options">Choose interval </td>
+                <td><button class="refreshInterval" value="1"><p>1</p></button></td>
+                <td><button class="refreshInterval" value="3"><p>3</p></button></td>
+                <td><button class="refreshInterval" value="6"><p>6</p></button></td>
+                <td><button class="refreshInterval" value="12"><p>12</p></button></td>
+                <td><button class="refreshInterval" value="24"><p>24</p></button></td>
+                <td><button class="refreshInterval" value="48"><p>48</p></button></td>
+                <td><button class="refreshInterval" value="72"><p>72</p></button></td>
+                <td><button class="refreshInterval" value="96"><p>96</p></button></td>
+                <td><button class="refreshInterval" value="120"><p>120</p></button></td>
+                <td class="item-options">Hours</td>
+              </tr>
+            </table>
+            <table class="item-c">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">Enable new episodes automatic download (currently not available)</td>
+                <td class="item-checkbox"><input type="checkbox" disabled></input></td>
+              </tr>
+            </table>
+            <table class="item-c">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">Delete downloaded episodes when the end is reached</td>
+                <td class="item-checkbox"><input id="autoDelete" type="checkbox"></input></td>
+              </tr>
+            </table>
+            <table class="item-c">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">Within player page, when I scroll, re-position the player toolbar and top banner</td>
+                <td class="item-checkbox"><input id="scrollAction" type="checkbox"></input></td>
+              </tr>
+            </table>
+            <table class="item-c">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">When I click on a button, vibrate the device (15 milliseconds)</td>
+                <td class="item-checkbox"><input id="buttonVibrate" type="checkbox"></input></td>
+              </tr>
+            </table>
+            <table class="item-c">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">Show notifications</td>
+                <td class="item-checkbox"><input id="showNotifications" type="checkbox"></input></td>
+              </tr>
+            </table>
+            <table class="item-c">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">Font Size </td>
+                <td><button class="fontSize" value="8px"><p>A</p></button></td>
+                <td><button class="fontSize" value="9px"><p>A</p></button></td>
+                <td><button class="fontSize" value="10px"><p>A</p></button></td>
+                <td><button class="fontSize" value="11px"><p>A</p></button></td>
+                <td><button class="fontSize" value="12px"><p>A</p></button></td>
+                <td><button class="fontSize" value="13px"><p>A</p></button></td>
+                <td><button class="fontSize" value="14px"><p>A</p></button></td>
+                <td><button class="fontSize" value="15px"><p>A</p></button></td>
+                <td><button class="fontSize" value="16px"><p>A</p></button></td>
+              </tr>
+            </table>
+            <table class="item-c litecolor titlecolor">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-wrench"></i></td>
+                <td class="item-options item-h-q">Adjust search setting</td>
+              </tr>
+            </table>
+            <table class="item-c">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">For each podcast, fetch maximum <input class="settings-number" id="podcastCap" type="number" placeholder="15" min=1></input> episodes.</td>
+              </tr>
+              <tr>
+                <td class="item-bullet"><i class="fa fa-bell-o"></i></td>
+                <td class="item-options">Note: high max values (>100) may cause the App to become slow. Default value is 15 items.</td>
+              </tr>
+            </table>
+            <table class="item-c">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">When I search for any keyword, fetch maximum <input class="settings-number" id="maxSearch" type="number" placeholder="10" min=1 max=50></input> items.</td>
+              </tr>
+              <tr>
+                <td class="item-bullet"><i class="fa fa-bell-o"></i></td>
+                <td class="item-options">Default value is 10. Maximum items to search for a keyword is 50 items. Please increase this number only if you have a fast device and high speed internet connection.</td>
+              </tr>
+            </table>
+            <table class="item-c litecolor titlecolor">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-wrench"></i></td>
+                <td class="item-options item-h-q">Adjust image setting</td>
+              </tr>
+            </table>
+            <table class="item-c">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">Make thumbnail for all images.</td>
+                <td class="item-checkbox"><input id="imageThumbnail" type="checkbox"></input></td>
+              </tr>
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">Resize (scale down) all thumbnails to <input class="settings-number" id="imageScale" type="number" placeholder="100" min=1 max=100></input>% of the original size.</td>
+              </tr>
+              <tr>
+                <td class="item-bullet"><i class="fa fa-bell-o"></i></td>
+                <td class="item-options">Thumbnails load faster in the UI comparing to the original high resolution images.</td>
+              </tr>
+            </table>
+            <table class="item-c">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">Do NOT fetch any image (only text and audio data will be downloaded)</td>
+                <td class="item-checkbox"><input id="blockImage" type="checkbox"></input></td>
+              </tr>
+              <tr>
+                <td class="item-bullet"><i class="fa fa-bell-o"></i></td>
+                <td class="item-options">This option is only useful if your device is very slow or you want to save internet bandwidth.</td>
+              </tr>
+            </table>
+            <table class="item-c">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">Render ALL images with device GPU</td>
+                <td class="item-checkbox"><input id="renderGPU" type="checkbox"></input></td>
+              </tr>
+              <tr>
+                <td class="item-bullet"><i class="fa fa-bell-o"></i></td>
+                <td class="item-options">If your device supports Hardware Acceleration, you can render images with GPU (Graphics Card). This may increase UI's speed. But, if you see any crashes, please disable this option, as the GPU is not capable enough for rendering images.</td>
+              </tr>
+            </table>
+            <table class="item-c litecolor titlecolor">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-wrench"></i></td>
+                <td class="item-options item-h-q">Adjust cache settings</td>
+              </tr>
+            </table>
+            <table class="item-c">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">Render ALL cached items in the "Manage Cache" tab</td>
+                <td class="item-checkbox"><input id="renderCache" type="checkbox"></input></td>
+              </tr>
+              <tr>
+                <td class="item-bullet"><i class="fa fa-bell-o"></i></td>
+                <td class="item-options">Default is NOT to show. Caution: enabling this option may cause the APP to crash due to rendering large number of items.</td>
+              </tr>
+            </table>
+          </div>
+          <div rule="options" type="cache" class="podcast-tile">
+            <table class="item-c litecolor">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">Manage Cache (image and audio files)</td>
+                <td class="item-options action-button">
+                  <button type="trash-all"><i class="fa fa-trash"></i></button>
+                </td>
+              </tr>
+            </table>
+            <table class="item-c transparent" type="choose">
+              <tr>
+                <td><button type="cache" rule="podcast"><p>Podcast</p></button></td>
+                <td><button type="cache" rule="image"><p>Image</p></button></td>
+                <td><button type="cache" rule="audio"><p>Audio</p></button></td>
+                <td><button type="cache" rule="video"><p>Video</p></button></td>
+              </tr>
+            </table>
+            <div class="podcast-list clearcache"></div>
+          </div>
+          <div rule="options" type="log" class="podcast-tile">
+            <table class="item-c litecolor">
+              <tr>
+                <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
+                <td class="item-options">Kernel Logs (for debugging purposes)</td>
+                <td class="item-options action-button"><button type="clear-log"><i class="fa fa-trash"></i></button></td>
+              </tr>
+            </table>
+            <div class="log"><table class="item-n" id="log"></table></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- -->
+    <script type="text/javascript" src="index.js"></script>
+    <!-- -->
+    <script type="text/javascript" src="resources/ui.js"></script>
+    <script type="text/javascript" src="resources/app.js"></script>
+    <script type="text/javascript" src="resources/log.js"></script>
+    <script type="text/javascript" src="resources/page.js"></script>
+    <script type="text/javascript" src="resources/core.js"></script>
+    <script type="text/javascript" src="resources/drag.js"></script>
+    <script type="text/javascript" src="resources/parse.js"></script>
+    <script type="text/javascript" src="resources/fetch.js"></script>
+    <script type="text/javascript" src="resources/image.js"></script>
+    <script type="text/javascript" src="resources/track.js"></script>
+    <script type="text/javascript" src="resources/button.js"></script>
+    <script type="text/javascript" src="resources/handle.js"></script>
+    <script type="text/javascript" src="resources/player.js"></script>
+    <script type="text/javascript" src="resources/message.js"></script>
+    <script type="text/javascript" src="resources/request.js"></script>
+    <script type="text/javascript" src="resources/element.js"></script>
+    <script type="text/javascript" src="resources/storage.js"></script>
+    <script type="text/javascript" src="resources/general.js"></script>
+    <script type="text/javascript" src="resources/listeners.js"></script>
+  </body>
+</html>
