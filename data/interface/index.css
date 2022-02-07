@@ -322,7 +322,7 @@ input[name=intensity] {
 }
 
 .intro #svglogo {
-  width: 100%;
+  width: auto;
   height: 110px;
   border-top: solid 1px rgba(0,0,0,0.1);
 }

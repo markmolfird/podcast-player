@@ -61,42 +61,12 @@ var config = {
   "settings": {},
   "MEDIA_ERR": false,
   "load": function () {
+    document.addEventListener("click", config.core.listeners.click, false);
+    document.addEventListener("mouseup", config.core.listeners.mouse.up, false);
+    document.addEventListener("DOMContentLoaded", config.core.listeners.content.loaded, false);
+    /*  */
     config.storage.load(config.app.load);
     window.removeEventListener("load", config.load, false);
-  },
-  "listener": {
-    "mouse": {
-      "up": function () {
-        var currentTime = document.querySelector('div[type="currenttime"]');
-        var range = document.querySelector('input[rule="player"]');
-        currentTime.action = true;
-        range.action = true;
-      }
-    },
-    "content": {
-      "loaded": function () {
-        var content = document.querySelector(".content");
-        var support = document.querySelector("#support");
-        var donation = document.querySelector("#donation");
-        /*  */
-        if (support) support.style.display = window === window.top ? "block" : "none";
-        if (donation) donation.style.display = window === window.top ? "block" : "none";
-        if (content) content.style.width = window === window.top ? "calc(100% + 17px)" : "100%";
-      }
-    },
-    "click": function (e) {
-      if (e.target) {
-        var td = e.target.closest("td");
-        if (td) {
-          var keys = "left|center|right|footer";
-          if (keys.indexOf(td.className) !== -1) {
-            return;
-          }
-        }
-      }
-      /*  */
-      config.UI.controls.visibility.hide();
-    }
   },
   "resize": {
     "timeout": null,
@@ -167,7 +137,4 @@ var config = {
 config.port.connect();
 
 window.addEventListener("load", config.load, false);
-window.addEventListener("click", config.listener.click, false);
 window.addEventListener("resize", config.resize.method, false);
-document.addEventListener("mouseup", config.listener.mouse.up);
-document.addEventListener("DOMContentLoaded", config.listener.content.loaded, false);
