@@ -78,7 +78,7 @@ config.app = {
     "create": function (o, callback) {
       if (o.type === "confirm") callback(window.confirm(o.message));
       else if (o.type === "normal" || o.type === "alert") {
-        if (window === window.top) {
+        if (config.port.name !== "webapp") {
           chrome.notifications.create(config.app.notifications.id, {
             "type": 'basic',
             "message": o.message,

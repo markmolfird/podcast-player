@@ -106,31 +106,6 @@ var config = {
       /*  */
       document.documentElement.setAttribute("context", config.port.name);
     }
-  },
-  "storage": {
-    "local": {},
-    "read": function (id) {
-      return config.storage.local[id];
-    },
-    "load": function (callback) {
-      chrome.storage.local.get(null, function (e) {
-        config.storage.local = e;
-        callback();
-      });
-    },
-    "write": function (id, data) {
-      if (id) {
-        if (data !== '' && data !== null && data !== undefined) {
-          var tmp = {};
-          tmp[id] = data;
-          config.storage.local[id] = data;
-          chrome.storage.local.set(tmp, function () {});
-        } else {
-          delete config.storage.local[id];
-          chrome.storage.local.remove(id, function () {});
-        }
-      }
-    }
   }
 };
 

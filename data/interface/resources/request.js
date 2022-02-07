@@ -42,7 +42,7 @@ config.http = {
     };
     /*  */
     if (url) {
-      if (window === window.top) {
+      if (config.port.name !== "webapp") {
         try {
           var url = new URL(url);
           if (url) action();

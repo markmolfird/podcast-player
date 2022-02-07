@@ -13,9 +13,9 @@ config.core.listeners = {
       var support = document.querySelector("#support");
       var donation = document.querySelector("#donation");
       /*  */
-      if (support) support.style.display = window === window.top ? "block" : "none";
-      if (donation) donation.style.display = window === window.top ? "block" : "none";
-      if (content) content.style.width = window === window.top ? "calc(100% + 17px)" : "100%";
+      if (support) support.style.display = config.port.name !== "webapp" ? "block" : "none";
+      if (donation) donation.style.display = config.port.name !== "webapp" ? "block" : "none";
+      if (content) content.style.width = config.port.name !== "webapp" ? "calc(100% + 17px)" : "100%";
     }
   },
   "click": function (e) {
@@ -42,7 +42,7 @@ config.core.listeners = {
     /*  */
     var support = document.querySelector('#support');
     support.addEventListener('click', function () {
-      if (window === window.top) {
+      if (config.port.name !== "webapp") {
         var url = config.addon.homepage();
         chrome.tabs.create({"url": url, "active": true});
       }
@@ -50,7 +50,7 @@ config.core.listeners = {
     /*  */
     var donation = document.querySelector('#donation');
     donation.addEventListener('click', function () {
-      if (window === window.top) {
+      if (config.port.name !== "webapp") {
         var url = config.addon.homepage() + "?reason=support";
         chrome.tabs.create({"url": url, "active": true});
       }

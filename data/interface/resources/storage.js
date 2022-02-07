@@ -1,13 +1,19 @@
 config.storage = {
   "local": {},
-  "reset": function (id) {config.storage.write(id, {})},
-  "read": function (id) {return config.storage.local[id]},
+  "reset": function (id) {
+    config.storage.write(id, {});
+  },
+  "read": function (id) {
+    return config.storage.local[id];
+  },
   "clean": function (id) {
     if (id === "all") {
       for (var id in config.general.id) {
         config.storage.write(config.general.id[id], {});
       }
-    } else config.storage.write(id, {});
+    } else {
+      config.storage.write(id, {});
+    }
   },
   "write": function (id, data) {
     if (id) {
@@ -17,15 +23,15 @@ config.storage = {
         var tmp = {};
         tmp[id] = data;
         config.storage.local[id] = data;
-        if (window === window.top) {
-          chrome.storage.local.set(tmp, function () {});
+        if (config.port.name !== "webapp") {
+          chrome.storage.local.set(tmp);
         } else {
           localStorage.setItem(id, JSON.stringify(data));
         }
       } else {
         delete config.storage.local[id];
-        if (window === window.top) {
-          chrome.storage.local.remove(id, function () {});
+        if (config.port.name !== "webapp") {
+          chrome.storage.local.remove(id);
         } else {
           localStorage.removeItem(id);
         }
@@ -33,7 +39,7 @@ config.storage = {
     }
   },
   "load": function (callback) {
-    if (window === window.top) {
+    if (config.port.name !== "webapp") {
       chrome.storage.local.get(null, function (e) {
         config.storage.local = e;
         callback();
@@ -67,8 +73,8 @@ config.storage = {
     },
     "subscribed": function (url, property, value) {
       var tmp = config.settings.episodes.subscribed;
-      for (name in tmp) {
-        var podcast = tmp[name];
+      for (id in tmp) {
+        var podcast = tmp[id];
         if (podcast && podcast.items) {
           for (var i = 0; i < podcast.items.length; i++) {
             var item = podcast.items[i];
@@ -81,6 +87,7 @@ config.storage = {
       /*  */
       config.settings.episodes.subscribed = tmp;
       config.storage.write(config.general.id.settings, config.settings);
+      /*  */
       config.UI.page.update.interface();
     }
   }
