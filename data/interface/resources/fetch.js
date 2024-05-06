@@ -74,7 +74,7 @@ config.fetch = {
       }
     },
     "list": function (term) {
-      const address = config.fetch.podcast.path + "search?term=" + term.trim().replace(' ', '+') + "&media=podcast&limit=" + config.UI.page.result.limit;
+      let address = config.fetch.podcast.path + "search?term=" + term.trim().replace(' ', '+') + "&media=podcast&limit=" + config.UI.page.result.limit;
       if (window !== window.top) address = config.fetch.podcast.corsanywhere + address;
       /*  */
       config.http.request(address, null, null, function (data) {
