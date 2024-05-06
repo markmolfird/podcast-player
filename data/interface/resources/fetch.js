@@ -47,8 +47,8 @@ config.fetch = {
   },
   "podcast" : {
     "path": "https://itunes.apple.com/",
+    "corsanywhere": "https://corsproxy.io/?", /* for webapp */
     "api": "https://api.rss2json.com/v1/api.json?rss_url=", /* for webapp */
-    "corsanywhere": "https://cors-anywhere.herokuapp.com/", /* for webapp */
     "data": function (url, callback) {
       if (window !== window.top) {
         url = config.fetch.podcast.api + encodeURIComponent(url);
@@ -75,7 +75,7 @@ config.fetch = {
     },
     "list": function (term) {
       let address = config.fetch.podcast.path + "search?term=" + term.trim().replace(' ', '+') + "&media=podcast&limit=" + config.UI.page.result.limit;
-      if (window !== window.top) address = config.fetch.podcast.corsanywhere + address;
+      if (window !== window.top) address = config.fetch.podcast.corsanywhere + encodeURIComponent(address);
       /*  */
       config.http.request(address, null, null, function (data) {
         if (data.method === "result") {
