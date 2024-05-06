@@ -10,17 +10,17 @@ config.core = {
   },
   "launched": {
     get app () {
-      var tmp = config.storage.read(config.general.id.app);
-      var o = tmp["config.core.launched.app"];
+      const tmp = config.storage.read(config.general.id.app);
+      const o = tmp["config.core.launched.app"];
       return (o && 'V' in o) ? o.V : false;
     },
     set app (val) {
-      var tmp = config.storage.read(config.general.id.app);
+      const tmp = config.storage.read(config.general.id.app);
       tmp["config.core.launched.app"] = {'V': val};
       config.storage.write(config.general.id.app, tmp);
     },
     get time () {
-      var o = config.settings["config.core.launched.time"];
+      const o = config.settings["config.core.launched.time"];
       return (o && 'V' in o) ? o.V : '';
     },
     set time (val) {
@@ -28,7 +28,7 @@ config.core = {
       config.storage.write(config.general.id.settings, config.settings);
     },
     get lifetime () {
-      var o = config.settings["config.core.launched.lifetime"];
+      const o = config.settings["config.core.launched.lifetime"];
       return (o && 'V' in o) ? o.V : false;
     },
     set lifetime (val) {
@@ -39,7 +39,7 @@ config.core = {
   "options": {
     "markAsSeen": {
       get content () {
-        var o = config.settings["config.core.options.markAsSeen"];
+        const o = config.settings["config.core.options.markAsSeen"];
         return (o && 'V' in o) ? o.V : false;
       },
       set content (val) {
@@ -49,7 +49,7 @@ config.core = {
     },
     "autoRefresh": {
       get content () {
-        var o = config.settings["config.core.options.autoRefresh"];
+        const o = config.settings["config.core.options.autoRefresh"];
         return (o && 'V' in o) ? o.V : '';
       },
       set content (val) {
@@ -59,7 +59,7 @@ config.core = {
     },
     "autoDelete": {
       get content () {
-        var o = config.settings["config.core.options.autoDelete"];
+        const o = config.settings["config.core.options.autoDelete"];
         return (o && 'V' in o) ? o.V : false;
       },
       set content (val) {
@@ -69,7 +69,7 @@ config.core = {
     },
     "scrollAction": {
       get content () {
-        var o = config.settings["config.core.options.scrollAction"];
+        const o = config.settings["config.core.options.scrollAction"];
         return (o && 'V' in o) ? o.V : false;
       },
       set content (val) {
@@ -79,7 +79,7 @@ config.core = {
     },
     "buttonVibrate": {
       get content () {
-        var o = config.settings["config.core.options.buttonVibrate"];
+        const o = config.settings["config.core.options.buttonVibrate"];
         return (o && 'V' in o) ? o.V : true;
       },
       set content (val) {
@@ -89,7 +89,7 @@ config.core = {
     },
     "showNotifications": {
       get content () {
-        var o = config.settings["config.core.options.showNotifications"];
+        const o = config.settings["config.core.options.showNotifications"];
         return (o && 'V' in o) ? o.V : true;
       },
       set content (val) {
@@ -103,19 +103,19 @@ config.core = {
     "filename": function (callback) {},
     "UI": function (callback) {
       config.log(" • loading interface");
-      var maxSearch = document.getElementById('maxSearch');
-      var renderGPU = document.getElementById('renderGPU');
-      var blockImage = document.getElementById('blockImage');
-      var autoDelete = document.getElementById('autoDelete');
-      var markAsSeen = document.getElementById('markAsSeen');
-      var podcastCap = document.getElementById('podcastCap');
-      var imageScale = document.getElementById('imageScale');
-      var renderCache = document.getElementById('renderCache');
-      var autoRefresh = document.getElementById('autoRefresh');
-      var scrollAction = document.getElementById('scrollAction');
-      var buttonVibrate = document.getElementById('buttonVibrate');
-      var imageThumbnail = document.getElementById('imageThumbnail');
-      var showNotifications = document.getElementById('showNotifications');
+      const maxSearch = document.getElementById('maxSearch');
+      const renderGPU = document.getElementById('renderGPU');
+      const blockImage = document.getElementById('blockImage');
+      const autoDelete = document.getElementById('autoDelete');
+      const markAsSeen = document.getElementById('markAsSeen');
+      const podcastCap = document.getElementById('podcastCap');
+      const imageScale = document.getElementById('imageScale');
+      const renderCache = document.getElementById('renderCache');
+      const autoRefresh = document.getElementById('autoRefresh');
+      const scrollAction = document.getElementById('scrollAction');
+      const buttonVibrate = document.getElementById('buttonVibrate');
+      const imageThumbnail = document.getElementById('imageThumbnail');
+      const showNotifications = document.getElementById('showNotifications');
       /*  */
       maxSearch.value = config.UI.page.result.limit;
       podcastCap.value = config.general.podcast.cap;
@@ -137,25 +137,25 @@ config.core = {
     "track": function () {
       if (config.settings.episodes && config.settings.episodes.subscribed) {
         config.log(" • loading tracks");
-        var arr = Object.keys(config.settings.episodes.subscribed);
-        for (var i = 0; i < arr.length; i++) {
-          var url = arr[i];
+        const arr = Object.keys(config.settings.episodes.subscribed);
+        for (let i = 0; i < arr.length; i++) {
+          const url = arr[i];
           if (url) {
-            var podcast = config.settings.episodes.subscribed[url];
+            const podcast = config.settings.episodes.subscribed[url];
             if (podcast) {
-              var items = podcast.items;
-              for (var i = 0; i < items.length; i++) {
-                var track = items[i];
+              const items = podcast.items;
+              for (let i = 0; i < items.length; i++) {
+                const track = items[i];
                 if (track) {
                   if (track.enclosure.link === config.player.audio.src) {
                     config.player.audio.check(function (check) {
                       if (check) {
                         config.player.audio.value.set("src", config.player.audio.src);
                         /*  */
-                        var mute = document.querySelector('button[type="mute"]');
-                        var seen = document.querySelector('button[type="seen"]');
-                        var duration = document.querySelector('div[type="duration"]');
-                        var minutes = config.player.audio.sleep.array[config.player.audio.sleep.index];
+                        const mute = document.querySelector('button[type="mute"]');
+                        const seen = document.querySelector('button[type="seen"]');
+                        const duration = document.querySelector('div[type="duration"]');
+                        const minutes = config.player.audio.sleep.array[config.player.audio.sleep.index];
                         /*  */
                         duration.textContent = config.general.fn.toHHMMSS(config.player.audio.duration.index);
                         seen.querySelector('i').setAttribute("class", "fa fa-eye" + config.player.audio.seen.state);
@@ -180,19 +180,19 @@ config.core = {
     "player": function (callback) {
       config.log(" • loading player");
       /*  */
-      var content = document.querySelector(".content");
-      var title = document.getElementById("podcast-title");
-      var seen = document.querySelector('button[type="seen"]');
-      var mute = document.querySelector('button[type="mute"]');
-      var range = document.querySelector('input[rule="player"]');
-      var sleep = document.querySelector('button[type="sleep"]');
-      var speed = document.querySelector('button[type="speed"]');
-      var forward = document.querySelector('button[type="forward"]');
-      var backward = document.querySelector('button[type="backward"]');
-      var currenttime = document.querySelector('div[type="currenttime"]');
-      var forwardbutton = document.querySelector('button[type="f-forward"]');
-      var backwardbutton = document.querySelector('button[type="f-backward"]');
-      var mainplayer = document.querySelector(".II-tab .player-controls").querySelector('button[type="play"]');
+      const content = document.querySelector(".content");
+      const title = document.getElementById("podcast-title");
+      const seen = document.querySelector('button[type="seen"]');
+      const mute = document.querySelector('button[type="mute"]');
+      const range = document.querySelector('input[rule="player"]');
+      const sleep = document.querySelector('button[type="sleep"]');
+      const speed = document.querySelector('button[type="speed"]');
+      const forward = document.querySelector('button[type="forward"]');
+      const backward = document.querySelector('button[type="backward"]');
+      const currenttime = document.querySelector('div[type="currenttime"]');
+      const forwardbutton = document.querySelector('button[type="f-forward"]');
+      const backwardbutton = document.querySelector('button[type="f-backward"]');
+      const mainplayer = document.querySelector(".II-tab .player-controls").querySelector('button[type="play"]');
       /*  */
       range.action = true;
       range.TIMEOUT = null;
@@ -238,7 +238,7 @@ config.core = {
       sleep.addEventListener("click", function (e) {
         config.app.notifications.vibrate.action(e, this);
         config.player.audio.sleep.index = config.player.audio.sleep.index + 1 < sleep.array.length ? config.player.audio.sleep.index + 1 : 0;
-        var minutes = sleep.array[config.player.audio.sleep.index];
+        const minutes = sleep.array[config.player.audio.sleep.index];
         document.getElementById("podcast-sleep").textContent = minutes ? " " + minutes + " Minutes" : " Timer: OFF";
         config.player.audio.timer.add(minutes);
       }, false);
@@ -252,7 +252,7 @@ config.core = {
       /*  */
       mute.addEventListener("click", function (e) {
         config.app.notifications.vibrate.action(e, this);
-        var muted = config.player.audio.mute.state === "-up";
+        const muted = config.player.audio.mute.state === "-up";
         config.player.audio.mute.state = muted ? "-off" : "-up";
         mute.querySelector('i').setAttribute("class", "fa fa-volume" + config.player.audio.mute.state);
         config.player.audio.value.set("muted", muted);
@@ -260,7 +260,7 @@ config.core = {
       /*  */
       seen.addEventListener("click", function (e) {
         config.app.notifications.vibrate.action(e, this);
-        var eye = this.querySelector('i').getAttribute("class");
+        const eye = this.querySelector('i').getAttribute("class");
         config.player.audio.seen.state = eye === "fa fa-eye" ? "-slash" : '';
         document.getElementById("podcast-seen").setAttribute("class", "fa fa-eye" + config.player.audio.seen.state);
         document.getElementById("podcast-seen").textContent = config.player.audio.seen.state ? " Hide read" : " Show read";
@@ -271,7 +271,7 @@ config.core = {
       range.addEventListener("input", function () {
         range.action = false;
         currenttime.action = false;
-        var t = (range.value / 100) * config.player.audio.duration.index;
+        const t = (range.value / 100) * config.player.audio.duration.index;
         document.querySelector('div[type="currenttime"]').textContent = config.general.fn.toHHMMSS(t);
         /*  */
         if (range.TIMEOUT) window.clearTimeout(range.TIMEOUT);
@@ -299,7 +299,7 @@ config.core = {
           });
           /*  */
           config.player.audio.listener("ended", function () {
-            var url = config.player.audio.src;
+            const url = config.player.audio.src;
             /*  */
             if (config.core.options.autoDelete.content === true) {/* ToDO */}
             if (config.core.options.markAsSeen.content === true) config.storage.update.subscribed(url, "seen", true);
@@ -310,8 +310,8 @@ config.core = {
           config.player.audio.listener("timeupdate", function (e) {
             if (config.player.audio.duration.index) {
               config.MEDIA_ERR = false;
-              var t = e.target.currentTime;
-              var p = (t / config.player.audio.duration.index) * 100;
+              const t = e.target.currentTime;
+              const p = (t / config.player.audio.duration.index) * 100;
               /*  */
               if (range.action) range.value = p;
               config.player.audio.current.time.index = t;
@@ -328,7 +328,7 @@ config.core = {
               case code.MEDIA_ERR_ABORTED: config.log('> MEDIA_ERR: ABORTED'); break;
               case code.MEDIA_ERR_NETWORK: config.log('> MEDIA_ERR: NETWORK'); break;
               case code.MEDIA_ERR_SRC_NOT_SUPPORTED: config.log('> MEDIA_ERR: SRC_NOT_SUPPORTED'); break;
-              default: config.log('> MEDIA_ERR: UNKNOWN_' + code); break;
+              default: config.log('> MEDIA_ERR: UNKNOWN_error'); break;
             }
             /*  */
             range.value = 0;
@@ -337,12 +337,13 @@ config.core = {
             config.player.audio.current.time.text = "00:00:00";
             document.querySelector('div[type="currenttime"]').textContent = config.player.audio.current.time.text;
             /*  */
-            if (config.MEDIA_ERR) config.log(" • MEDIA_ERR: 1ST");
-            else {
+            if (config.MEDIA_ERR) {
+              config.log(" • MEDIA_ERR: 1ST");
+            } else {
               config.MEDIA_ERR = true;
               config.player.audio.src = null;
               config.player.audio.action.content = "play";
-              config.player.audio.value.set("src", config.player.audio.src);
+              //config.player.audio.value.set("src", config.player.audio.src);
               config.log(" • MEDIA_ERR: 2ND");
               if (config.core.options.showNotifications.content === true) {
                 config.app.notifications.create({
@@ -355,7 +356,7 @@ config.core = {
         }
       });
       /*  */
-      var permission = config.player.audio.src && config.player.audio.src !== "about:blank";
+      const permission = config.player.audio.src && config.player.audio.src !== "about:blank" && config.player.audio.src.indexOf("/null") === -1;
       if (permission) {
         config.core.load.track();
       } else {

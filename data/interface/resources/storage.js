@@ -8,7 +8,7 @@ config.storage = {
   },
   "clean": function (id) {
     if (id === "all") {
-      for (var id in config.general.id) {
+      for (let id in config.general.id) {
         config.storage.write(config.general.id[id], {});
       }
     } else {
@@ -20,7 +20,7 @@ config.storage = {
       if (id === config.general.id.settings) config.settings = data;
       /*  */
       if (data !== '' && data !== null && data !== undefined) {
-        var tmp = {};
+        const tmp = {};
         tmp[id] = data;
         config.storage.local[id] = data;
         if (config.port.name !== "webapp") {
@@ -45,11 +45,11 @@ config.storage = {
         callback();
       });
     } else {
-      var keys = Object.keys(localStorage);
-      var i = keys.length;
+      const keys = Object.keys(localStorage);
+      let i = keys.length;
       while (i--) {
         if (keys[i]) {
-          var item = localStorage.getItem(keys[i]);
+          const item = localStorage.getItem(keys[i]);
           if (item) {
             try {
               config.storage.local[keys[i]] = JSON.parse(item);
@@ -64,7 +64,7 @@ config.storage = {
   },
   "update": {
     "color": function (name, color) {
-      var tmp = config.settings.color || {};
+      const tmp = config.settings.color || {};
       if (color) tmp[name] = color;
       /*  */
       config.settings.color = tmp;
@@ -72,12 +72,12 @@ config.storage = {
       config.UI.page.update.interface();
     },
     "subscribed": function (url, property, value) {
-      var tmp = config.settings.episodes.subscribed;
-      for (id in tmp) {
-        var podcast = tmp[id];
+      const tmp = config.settings.episodes.subscribed;
+      for (let id in tmp) {
+        const podcast = tmp[id];
         if (podcast && podcast.items) {
-          for (var i = 0; i < podcast.items.length; i++) {
-            var item = podcast.items[i];
+          for (let i = 0; i < podcast.items.length; i++) {
+            const item = podcast.items[i];
             if (item.enclosure.link === url) {
               item[property] = value;
             }

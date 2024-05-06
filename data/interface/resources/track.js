@@ -12,14 +12,16 @@ config.UI.track = {
       if (s >= Math.pow(2, 20)) return (s / Math.pow(2, 20)).toFixed(1) + " MB";
       if (s >= Math.pow(2, 10)) return (s / Math.pow(2, 10)).toFixed(1) + " KB";
       return s + " B";
-    } else return "Unknown Size";
+    } else {
+      return "Unknown Size";
+    }
   },
   "move": function (url, direction) {
-    var episodes = config.settings["episodes"] || {};
-    var playlist = episodes["playlist"] || [];
-    var index = -1;
+    let index = -1;
+    const episodes = config.settings["episodes"] || {};
+    const playlist = episodes["playlist"] || [];
     /*  */
-    for (var i = 0; i < playlist.length; i++) {
+    for (let i = 0; i < playlist.length; i++) {
       if (playlist[i] === url) {
         index = i;
         break;
@@ -27,9 +29,9 @@ config.UI.track = {
     }
     /*  */
     if (index !== -1) {
-      var nindex = (direction === "up") ? (index - 1) : (index + 1);
+      const nindex = (direction === "up") ? (index - 1) : (index + 1);
       if (playlist[nindex]) {
-        var tmp = playlist[index];
+        const tmp = playlist[index];
         playlist[index] = playlist[nindex];
         playlist[nindex] = tmp;
         episodes["playlist"] = playlist;
@@ -41,37 +43,40 @@ config.UI.track = {
   "drag": function (tr, drag) {
     if (drag) {
       (function (tr, drag) {
+        let i, button;
         tr.setAttribute("name", "drag");
         tr.setAttribute("draggable", true);
-        var td = document.createElement('td');
+        const td = document.createElement('td');
         td.setAttribute("class", "drag");
         /*  */
-        var button = document.createElement('button');
-        var i = document.createElement('i');
+        i = document.createElement('i');
+        button = document.createElement('button');
         i.setAttribute("class", "fa fa-arrow-up");
         button.style.cursor = "pointer";
         button.addEventListener("click", function (e) {
-          var url = this.parentNode.parentNode.getAttribute("item-url");
+          const url = this.parentNode.parentNode.getAttribute("item-url");
           config.UI.track.move(url, "up");
         });
+        /*  */
         button.appendChild(i);
         td.appendChild(button);
         /*  */
-        var button = document.createElement('button');
-        var i = document.createElement('i');
+        i = document.createElement('i');
+        button = document.createElement('button');
         i.setAttribute("class", "fa fa-bars");
         button.style.cursor = "move";
         button.appendChild(i);
         td.appendChild(button);
         /*  */
-        var button = document.createElement('button');
-        var i = document.createElement('i');
+        i = document.createElement('i');
+        button = document.createElement('button');
         i.setAttribute("class", "fa fa-arrow-down");
         button.style.cursor = "pointer";
         button.addEventListener("click", function (e) {
-          var url = this.parentNode.parentNode.getAttribute("item-url");
+          const url = this.parentNode.parentNode.getAttribute("item-url");
           config.UI.track.move(url, "down");
         });
+        /*  */
         button.appendChild(i);
         td.appendChild(button);
         /*  */
@@ -82,34 +87,35 @@ config.UI.track = {
   "reload": {
     "info": function (td, o) {
       if (td) {
-        var valid = config.UI.track.map && config.UI.track.map.audiocontext && config.UI.track.map.audiocontext[o.url];
+        const valid = config.UI.track.map && config.UI.track.map.audiocontext && config.UI.track.map.audiocontext[o.url];
         if (valid) {
-          var tr = td.closest("tr");
+          const tr = td.closest("tr");
           if (tr) {
-            var td = tr.querySelector(".item-length");
+            const td = tr.querySelector(".item-length");
             if (td.textContent === "Unknown Size") {
-              var audiocontext = config.UI.track.map.audiocontext[o.url];
+              const audiocontext = config.UI.track.map.audiocontext[o.url];
               if (audiocontext) {
-                var a = audiocontext.channelCount > 1 ? "Stereo" : "Mono";
-                var b = (audiocontext.context.sampleRate / 1000) + "kHz";
+                const a = audiocontext.channelCount > 1 ? "Stereo" : "Mono";
+                const b = (audiocontext.context.sampleRate / 1000) + "kHz";
+                /*  */
                 td.textContent = a + '-' + b;
               }
             }
           }
         } else {
           if (o.audio) {
-            var tr = td.closest("tr");
+            const tr = td.closest("tr");
             if (tr) {
-              var td = tr.querySelector(".item-length");
+              const td = tr.querySelector(".item-length");
               if (td.textContent === "Unknown Size") {
                 try {
-                  var AudioContext = window.AudioContext || window.webkitAudioContext;
+                  const AudioContext = window.AudioContext || window.webkitAudioContext;
                   if (AudioContext) {
-                    var audiocontext = new AudioContext();
-                    var track = audiocontext.createMediaElementSource(o.audio);
+                    const audiocontext = new AudioContext();
+                    const track = audiocontext.createMediaElementSource(o.audio);
                     if (track) {
-                      var a = track.channelCount > 1 ? "Stereo" : "Mono";
-                      var b = (track.context.sampleRate / 1000) + "kHz";
+                      const a = track.channelCount > 1 ? "Stereo" : "Mono";
+                      const b = (track.context.sampleRate / 1000) + "kHz";
                       config.UI.track.map.audiocontext[o.url] = {
                         "channelCount": track.channelCount,
                         "context": {
@@ -134,29 +140,34 @@ config.UI.track = {
     },
     "duration": function (td, o) {
       if (td) {
-        var valid = config.UI.track.map && config.UI.track.map.duration && config.UI.track.map.duration[o.url];
+        let tr, src, duration;
+        const valid = config.UI.track.map && config.UI.track.map.duration && config.UI.track.map.duration[o.url];
         if (valid) {
-          var duration = config.UI.track.map.duration[o.url];
+          duration = config.UI.track.map.duration[o.url];
           config.UI.track.reload.info(td, o);
           td.textContent = duration;
         } else {
           try {
-            var audio = document.createElement("audio");
-            var source = document.createElement("source");
+            const audio = document.createElement("audio");
+            const source = document.createElement("source");
             audio.setAttribute("preload", "metadata");
             source.setAttribute("type", "audio/mpeg");
             audio.addEventListener("loadedmetadata", function (e) {
-              var tr = e.target.closest("tr");
+              tr = e.target.closest("tr");
               if (tr) {
-                var duration = e.target.duration;
+                duration = e.target.duration;
                 if (duration) {
                   duration = config.general.fn.toHHMMSS(Number(duration));
                   tr.querySelector(".item-duration").textContent = duration;
                   config.UI.track.map.duration[o.url] = duration;
                   /*  */
-                  var td = tr.querySelector(".item-length");
-                  var src = e.target.querySelector("source").src;
-                  config.UI.track.reload.info(td, {"url": src, "audio": e.target});
+                  td = tr.querySelector(".item-length");
+                  src = e.target.querySelector("source").src;
+                  /*  */
+                  config.UI.track.reload.info(td, {
+                    "url": src, 
+                    "audio": e.target
+                  });
                 } else {
                   tr.querySelector(".item-duration").textContent = "00:00:00";
                 }
@@ -164,7 +175,7 @@ config.UI.track = {
             }, false);
             /*  */
             audio.addEventListener("error", function (e) {
-              var tr = e.target.closest("tr");
+              tr = e.target.closest("tr");
               if (tr) {
                 tr.querySelector(".item-duration").textContent = "00:00:00";
               }

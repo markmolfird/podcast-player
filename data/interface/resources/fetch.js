@@ -1,7 +1,7 @@
 config.make = {
   "podcast": {
     "map": function (count, index, results) {
-      var result = results[index];
+      const result = results[index];
       if (result) {
         config.core.map.list[result.feedUrl] = {
           "items": [],
@@ -21,7 +21,7 @@ config.make = {
           }
         };
         /*  */
-        var domain = result.feedUrl;
+        const domain = result.feedUrl;
         config.print.message({
           "index": count,
           "domain": domain,
@@ -35,7 +35,7 @@ config.make = {
 config.fetch = {
   "limit": {
     get image () {
-      var o = config.settings["config.fetch.limit.image"];
+      const o = config.settings["config.fetch.limit.image"];
       return (o && 'V' in o) ? o.V : false;
     },
     set image (val) {
@@ -54,7 +54,7 @@ config.fetch = {
         url = config.fetch.podcast.api + encodeURIComponent(url);
         config.http.request(url, "json", null, function (data) {
           if (data.method === "result") {
-            var feed = data.result;
+            const feed = data.result;
             if (feed.status.toLowerCase() === "ok") {
               callback(feed);
             }
@@ -63,7 +63,7 @@ config.fetch = {
       } else {
         config.http.request(url, "document", null, function (data) {
           if (data.method === "result") {
-            var feed = config.parse.xml.to.feed(data);
+            const feed = config.parse.xml.to.feed(data);
             if (feed && feed.status) {
               if (feed.status.toLowerCase() === "ok") {
                 callback(feed);
@@ -74,17 +74,17 @@ config.fetch = {
       }
     },
     "list": function (term) {
-      var address = config.fetch.podcast.path + "search?term=" + term.trim().replace(' ', '+') + "&media=podcast&limit=" + config.UI.page.result.limit;
+      const address = config.fetch.podcast.path + "search?term=" + term.trim().replace(' ', '+') + "&media=podcast&limit=" + config.UI.page.result.limit;
       if (window !== window.top) address = config.fetch.podcast.corsanywhere + address;
       /*  */
       config.http.request(address, null, null, function (data) {
         if (data.method === "result") {
-          var obj = JSON.parse(data.result);
+          const obj = JSON.parse(data.result);
           if (obj) {
-            var results = obj.results;
+            const results = obj.results;
             if (results && results.length) {
               config.core.map.list = {};
-              for (var index = 0; index < results.length; index++) {
+              for (let index = 0; index < results.length; index++) {
                 config.make.podcast.map(index, index, results);
               }
               /*  */
@@ -133,14 +133,15 @@ config.fetch = {
     "keys": function (keys) {
       config.core.map.list = {};
       (function loop(arr, index) {
-        var key = arr[index];
-        var address = config.fetch.podcast.path + "search?term=" + key + "&media=podcast&limit=1";
+        const key = arr[index];
+        const address = config.fetch.podcast.path + "search?term=" + key + "&media=podcast&limit=1";
         if (window !== window.top) address = config.fetch.podcast.corsanywhere + address;
+        /*  */
         config.http.request(address, null, null, function (data) {
           if (data.method === "result") {
-            var obj = JSON.parse(data.result);
+            const obj = JSON.parse(data.result);
             if (obj) {
-              var results = obj.results;
+              const results = obj.results;
               if (results && results.length) {
                 config.make.podcast.map(index, 0, results);
                 /*  */

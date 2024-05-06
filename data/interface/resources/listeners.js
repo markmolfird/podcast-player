@@ -1,17 +1,17 @@
 config.core.listeners = {
   "mouse": {
     "up": function () {
-      var currentTime = document.querySelector('div[type="currenttime"]');
-      var range = document.querySelector('input[rule="player"]');
+      const currentTime = document.querySelector('div[type="currenttime"]');
+      const range = document.querySelector('input[rule="player"]');
       currentTime.action = true;
       range.action = true;
     }
   },
   "content": {
     "loaded": function () {
-      var content = document.querySelector(".content");
-      var support = document.querySelector("#support");
-      var donation = document.querySelector("#donation");
+      const content = document.querySelector(".content");
+      const support = document.querySelector("#support");
+      const donation = document.querySelector("#donation");
       /*  */
       if (support) support.style.display = config.port.name !== "webapp" ? "block" : "none";
       if (donation) donation.style.display = config.port.name !== "webapp" ? "block" : "none";
@@ -20,9 +20,9 @@ config.core.listeners = {
   },
   "click": function (e) {
     if (e.target) {
-      var td = e.target.closest("td");
+      const td = e.target.closest("td");
       if (td) {
-        var keys = "left|center|right|footer";
+        const keys = "left|center|right|footer";
         if (keys.indexOf(td.className) !== -1) {
           return;
         }
@@ -35,145 +35,145 @@ config.core.listeners = {
     config.log(" • adding listeners");
     document.querySelector(".content").style.display = "block";
     /*  */
-    var reload = document.querySelector('button[type="reload"]');
+    const reload = document.querySelector('button[type="reload"]');
     reload.addEventListener("click", function () {
       document.location.reload();
     }, false);
     /*  */
-    var support = document.querySelector('#support');
+    const support = document.querySelector('#support');
     support.addEventListener('click', function () {
       if (config.port.name !== "webapp") {
-        var url = config.addon.homepage();
+        const url = config.addon.homepage();
         chrome.tabs.create({"url": url, "active": true});
       }
     }, false);
     /*  */
-    var donation = document.querySelector('#donation');
+    const donation = document.querySelector('#donation');
     donation.addEventListener('click', function () {
       if (config.port.name !== "webapp") {
-        var url = config.addon.homepage() + "?reason=support";
+        const url = config.addon.homepage() + "?reason=support";
         chrome.tabs.create({"url": url, "active": true});
       }
     }, false);
     /*  */
-    var options = document.querySelector('button[type="options"]');
+    const options = document.querySelector('button[type="options"]');
     options.addEventListener("click", function (e) {
       config.app.notifications.vibrate.action(e, this);
       config.UI.page.update.key = "options";
       config.UI.page.update.interface();
     }, false);
     /*  */
-    var settings = document.querySelector('button[type="settings"]');
+    const settings = document.querySelector('button[type="settings"]');
     settings.addEventListener("click", function (e) {
       config.app.notifications.vibrate.action(e, this);
       config.UI.page.update.key = "settings";
       config.UI.page.update.interface();
     }, false);
     /*  */
-    var add = document.querySelector('button[type="add"]');
+    const add = document.querySelector('button[type="add"]');
     add.addEventListener("click", function (e) {
       config.app.notifications.vibrate.action(e, this);
       config.UI.page.update.key = "result";
       config.UI.page.update.interface();
     }, false);
     /*  */
-    var blockImage = document.getElementById('blockImage');
+    const blockImage = document.getElementById('blockImage');
     blockImage.addEventListener("click", function (e) {
       config.fetch.limit.image = e.target.checked;
       config.app.notifications.vibrate.action(e, this);
     }, false);
     /*  */
-    var podcastCap = document.getElementById('podcastCap');
+    const podcastCap = document.getElementById('podcastCap');
     podcastCap.addEventListener("change", function (e) {
       config.general.podcast.cap = e.target.value;
     }, false);
     /*  */
-    var maxSearch = document.getElementById('maxSearch');
+    const maxSearch = document.getElementById('maxSearch');
     maxSearch.addEventListener("change", function (e) {
       config.UI.page.result.limit = e.target.value;
     }, false);
     /*  */
-    var intensity = document.querySelector('input[name="intensity"]');
+    const intensity = document.querySelector('input[name="intensity"]');
     intensity.addEventListener('input', function (e) {
       config.storage.update.color(this.getAttribute("name"), e.target.value);
     }, false);
     /*  */
-    var trashAll = document.querySelector('button[type="trash-all"]');
+    const trashAll = document.querySelector('button[type="trash-all"]');
     trashAll.addEventListener("click", function (e) {
       config.UI.page.cache.clear();
       config.app.notifications.vibrate.action(e, this);
       trashAll.querySelector('i').setAttribute("class", "fa fa-spinner fa-spin");
     }, false);
     /*  */
-    var renderCache = document.getElementById('renderCache');
+    const renderCache = document.getElementById('renderCache');
     renderCache.addEventListener("click", function (e) {
       config.UI.page.cache.render = e.target.checked;
       config.app.notifications.vibrate.action(e, this);
     }, false);
     /*  */
-    var clearLog = document.querySelector('button[type="clear-log"]');
+    const clearLog = document.querySelector('button[type="clear-log"]');
     clearLog.addEventListener("click", function (e) {
-      var log = document.getElementById("log");
+      const log = document.getElementById("log");
       if (log) log.textContent = '';
       config.app.notifications.vibrate.action(e, this);
     }, false);
     /*  */
-    var markAsSeen = document.getElementById('markAsSeen');
+    const markAsSeen = document.getElementById('markAsSeen');
     markAsSeen.addEventListener("click", function (e) {
       config.app.notifications.vibrate.action(e, this);
-      var value = config.core.options.markAsSeen.content;
+      const value = config.core.options.markAsSeen.content;
       if (value === true) config.core.options.markAsSeen.content = false;
       else config.core.options.markAsSeen.content = true;
     }, false);
     /*  */
-    var autoRefresh = document.getElementById('autoRefresh');
+    const autoRefresh = document.getElementById('autoRefresh');
     autoRefresh.addEventListener("click", function (e) {
       config.app.notifications.vibrate.action(e, this);
-      var value = config.core.options.autoRefresh.content;
+      const value = config.core.options.autoRefresh.content;
       if (value) config.core.options.autoRefresh.content = '';
       else config.core.options.autoRefresh.content = (new Date()).toString();
     }, false);
     /*  */
-    var autoDelete = document.getElementById('autoDelete');
+    const autoDelete = document.getElementById('autoDelete');
     autoDelete.addEventListener("click", function (e) {
       config.app.notifications.vibrate.action(e, this);
-      var value = config.core.options.autoDelete.content;
+      const value = config.core.options.autoDelete.content;
       if (value === true) config.core.options.autoDelete.content = false;
       else config.core.options.autoDelete.content = true;
     }, false);
     /*  */
-    var scrollAction = document.getElementById('scrollAction');
+    const scrollAction = document.getElementById('scrollAction');
     scrollAction.addEventListener("click", function (e) {
       config.app.notifications.vibrate.action(e, this);
-      var value = config.core.options.scrollAction.content;
+      const value = config.core.options.scrollAction.content;
       if (value === true) config.core.options.scrollAction.content = false;
       else config.core.options.scrollAction.content = true;
     }, false);
     /*  */
-    var buttonVibrate = document.getElementById('buttonVibrate');
+    const buttonVibrate = document.getElementById('buttonVibrate');
     buttonVibrate.addEventListener("click", function (e) {
       config.app.notifications.vibrate.action(e, this);
-      var value = config.core.options.buttonVibrate.content;
+      const value = config.core.options.buttonVibrate.content;
       if (value === true) config.core.options.buttonVibrate.content = false;
       else config.core.options.buttonVibrate.content = true;
     }, false);
     /*  */
-    var showNotifications = document.getElementById('showNotifications');
+    const showNotifications = document.getElementById('showNotifications');
     showNotifications.addEventListener("click", function (e) {
       config.app.notifications.vibrate.action(e, this);
-      var value = config.core.options.showNotifications.content;
+      const value = config.core.options.showNotifications.content;
       if (value === true) config.core.options.showNotifications.content = false;
       else config.core.options.showNotifications.content = true;
     }, false);
     /*  */
-    var imageScale = document.getElementById('imageScale');
+    const imageScale = document.getElementById('imageScale');
     imageScale.addEventListener("change", function (e) {
       config.UI.image.CACHE.img = {};
       config.UI.image.CACHE.dataURL = {};
       config.UI.image.scale = e.target.value;
     }, false);
     /*  */
-    var imageThumbnail = document.getElementById('imageThumbnail');
+    const imageThumbnail = document.getElementById('imageThumbnail');
     imageThumbnail.addEventListener("click", function (e) {
       config.UI.image.CACHE.img = {};
       config.UI.image.CACHE.dataURL = {};
@@ -181,14 +181,14 @@ config.core.listeners = {
       config.app.notifications.vibrate.action(e, this);
     }, false);
     /*  */
-    var renderGPU = document.getElementById('renderGPU');
+    const renderGPU = document.getElementById('renderGPU');
     renderGPU.addEventListener("click", function (e) {
       config.UI.image.CACHE.img = {};
       config.general.gpu.permission = e.target.checked;
       config.app.notifications.vibrate.action(e, this);
     }, false);
     /*  */
-    var refresh = document.querySelector('.top-controls button[type="refresh"]');
+    const refresh = document.querySelector('.top-controls button[type="refresh"]');
     refresh.addEventListener("click", function (e) {
       config.app.notifications.vibrate.action(e, this);
       config.app.notifications.create({
@@ -291,15 +291,15 @@ config.core.listeners = {
       }, false);
     });
     /*  */
-    var flip = document.querySelector('.title-flip').querySelectorAll('button');
+    const flip = document.querySelector('.title-flip').querySelectorAll('button');
     [...flip].map(function (elm) {
       elm.addEventListener("click", function (e) {
         config.app.notifications.vibrate.action(e, this);
         [...flip].map(function (elm) {elm.removeAttribute("selected")});
         this.setAttribute("selected", true);
         /*  */
-        var images = document.querySelector('.title-images').querySelectorAll('td');
-        var id = parseInt(this.getAttribute("slide"));
+        const images = document.querySelector('.title-images').querySelectorAll('td');
+        const id = parseInt(this.getAttribute("slide"));
         [...images].map(function (elm) {elm.classList.add("hidden"); elm.classList.add('visuallyhidden')});
         images[id].classList.remove('hidden');
         setTimeout(function () {images[id].classList.remove('visuallyhidden')}, 20);

@@ -1,18 +1,21 @@
 config.http = {
   "request": function (url, type, open, callback) {
-    var action = function () {
-      var xhr = new XMLHttpRequest();
+    const action = function () {
+      const xhr = new XMLHttpRequest();
       xhr.requestURL = url;
       /*  */
       try {
         xhr.onreadystatechange = function (e) {
-          var target = e.target;
+          const target = e.target;
           if (target.readyState === 4) {
-            var error = target.status >= 400 || target.status < 200;
-            if (error) config.print.message({"name": "error", "message": "Fetch error! please try again."});
-            else {
+            const error = target.status >= 400 || target.status < 200;
+            if (error) {
+              config.print.message({"name": "error", "message": "Fetch error! please try again."});
+            } else {
               if (open === "HEAD") {
-                var size = '', type = '';
+                let size = '';
+                let type = '';
+                /*  */
                 try {type = xhr.getResponseHeader("Content-Type")} catch (e) {}
                 try {size = xhr.getResponseHeader("Content-Length")} catch (e) {}
                 callback({"url": this.requestURL, "method": "result", "result": {"size": size, "type": type}});
@@ -44,19 +47,21 @@ config.http = {
     if (url) {
       if (config.port.name !== "webapp") {
         try {
-          var url = new URL(url);
-          if (url) action();
-          else {
-            config.print.message({"name": "error", "message": "Invalid URL! please try again."});
+          const test_url = new URL(url);
+          /*  */
+          if (test_url) {
+            action();
+          } else {
+            config.print.message({"name": "error", "message": "Invalid URL! please try again (code: 0.0)"});
           }
         } catch (e) {
-          config.print.message({"name": "error", "message": "Invalid URL! please try again."});
+          config.print.message({"name": "error", "message": "Invalid URL! please try again  (code: 1.0)"});
         }
       } else {
         action();
       }
     } else {
-      config.print.message({"name": "error", "message": "Invalid URL! please try again."});
+      config.print.message({"name": "error", "message": "Invalid URL! please try again  (code: 2.0)"});
     }
   }
 };

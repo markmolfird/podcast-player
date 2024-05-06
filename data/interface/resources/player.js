@@ -1,10 +1,15 @@
 config.player = {
   "audio": {
     "element": document.querySelector("audio"),
-    "current": {"time": {"index": 0, "text": "00:00:00"}},
     "method": function (rule) {config.player.audio.element[rule]()},
     "check": function (callback) {callback(config.player.audio.element ? true : false)},
     "listener": function (id, callback) {config.player.audio.element.addEventListener(id, callback)},
+    "current": {
+      "time": {
+        "index": 0, 
+        "text": "00:00:00"
+      }
+    },
     "download": {
       "abort": function (url) {},
       "start": function (url) {},
@@ -14,7 +19,7 @@ config.player = {
       "progress": function (callback) {},
     },
     get src () {
-      var o = config.settings["config.player.audio.src"];
+      const o = config.settings["config.player.audio.src"];
       return (o && 'V' in o) ? o.V : null;
     },
     set src (val) {
@@ -23,7 +28,7 @@ config.player = {
     },
     "saved": {
       get time () {
-        var o = config.settings["config.player.audio.saved.time"];
+        const o = config.settings["config.player.audio.saved.time"];
         return (o && 'V' in o) ? o.V : 0;
       },
       set time (val) {
@@ -33,7 +38,7 @@ config.player = {
     },
     "mute": {
       get state () {
-        var o = config.settings["config.player.audio.mute.state"];
+        const o = config.settings["config.player.audio.mute.state"];
         return (o && 'V' in o) ? o.V : "-up";
       },
       set state (val) {
@@ -43,7 +48,7 @@ config.player = {
     },
     "seen": {
       get state () {
-        var o = config.settings["config.player.audio.seen.state"];
+        const o = config.settings["config.player.audio.seen.state"];
         return (o && 'V' in o) ? o.V : "-slash";
       },
       set state (val) {
@@ -54,7 +59,7 @@ config.player = {
     "sleep": {
       "array": [0, 1, 15, 30, 45, 60, 75, 90, 105, 120],
       get index () {
-        var o = config.settings["config.player.audio.sleep"];
+        const o = config.settings["config.player.audio.sleep"];
         return (o && 'V' in o) ? o.V : 0;
       },
       set index (val) {
@@ -65,7 +70,7 @@ config.player = {
     "speed": {
       "array": [1, 1.5, 2, 2.5, 3, 5, 10],
       get index () {
-        var o = config.settings["config.player.audio.speed"];
+        const o = config.settings["config.player.audio.speed"];
         return (o && 'V' in o) ? o.V : 0;
       },
       set index (val) {
@@ -75,7 +80,7 @@ config.player = {
     },
     "duration": {
       get index () {
-        var o = config.settings["config.player.audio.duration"];
+        const o = config.settings["config.player.audio.duration"];
         return (o && 'V' in o) ? o.V : 0;
       },
       set index (val) {
@@ -84,17 +89,21 @@ config.player = {
       }
     },
     "value": {
-      "get": function (rule, callback) {callback(config.player.audio.element[rule])},
+      "get": function (rule, callback) {
+        callback(config.player.audio.element[rule]);
+      },
       "set": function (rule, val) {
-        config.player.audio.element[rule] = val;
-        /*  */
-        if (rule === "src") {
-          if (val && val !== "about:blank") {
-            config.player.audio.current.time.text = "Loading, please wait...";
-            [...document.querySelectorAll(".aon")].map(function (elm) {elm.style.opacity = "0.3"});
-            document.querySelector('div[type="currenttime"]').textContent = config.player.audio.current.time.text;
+        try {
+          config.player.audio.element[rule] = val;
+          /*  */
+          if (rule === "src") {
+            if (val && val !== "about:blank" && val.indexOf("/null") === -1) {
+              config.player.audio.current.time.text = "Loading, please wait...";
+              [...document.querySelectorAll(".aon")].map(function (elm) {elm.style.opacity = "0.3"});
+              document.querySelector('div[type="currenttime"]').textContent = config.player.audio.current.time.text;
+            }
           }
-        }
+        } catch (e) {}
       }
     },
     "timer": {
@@ -113,7 +122,7 @@ config.player = {
     },
     "action": {
       get content () {
-        var o = config.settings["config.player.audio.action.content"];
+        const o = config.settings["config.player.audio.action.content"];
         return (o && 'V' in o) ? o.V : "play";
       },
       set content (val) {
@@ -122,15 +131,15 @@ config.player = {
       },
       "play": function (loc, url) {
         config.player.audio.value.get("src", function (src) {
-          var main = document.querySelector('button[type="play"]').querySelector('i');
-          var items = document.getElementById("items-table") || document.getElementById("playlist-table");
+          const main = document.querySelector('button[type="play"]').querySelector('i');
+          const items = document.getElementById("items-table") || document.getElementById("playlist-table");
           if (items) {
-            var tmp = items.querySelectorAll('tr[item-url]');
+            const tmp = items.querySelectorAll('tr[item-url]');
             if (tmp) {
-              var addDetails = function (tr) {
-                var title = document.getElementById("podcast-title");
+              const addDetails = function (tr) {
+                const title = document.getElementById("podcast-title");
                 if (title) {
-                  var td = title.parentNode.parentNode.children[2];
+                  const td = title.parentNode.parentNode.children[2];
                   title.textContent = tr.getAttribute("item-title");
                   if (td) config.UI.image.make.element(null, td, tr.getAttribute("item-image"), null, 200);
                 }
@@ -139,7 +148,7 @@ config.player = {
               document.querySelector('div[type="currenttime"]').className = '';
               if (loc === "main") {
                 if (config.player.audio.action.content === "play") {
-                  if (src && src !== "about:blank") {
+                  if (src && src !== "about:blank" && src.indexOf("/null") === -1) {
                     if (main) main.setAttribute("class", "fa fa-pause");
                     config.player.audio.action.content = "pause";
                     config.player.audio.method("play");
@@ -169,7 +178,7 @@ config.player = {
                 /* play [item] */
                 [...tmp].map(function (tr) {
                   tr.removeAttribute("class");
-                  var item = tr.querySelector('button[type="play"]').querySelector('i');
+                  const item = tr.querySelector('button[type="play"]').querySelector('i');
                   if (tr.getAttribute("item-url") === src) {
                     /* add details */ addDetails(tr);
                     tr.setAttribute("class", (config.player.audio.action.content === "pause" ? "highlight" : ''));
@@ -180,45 +189,47 @@ config.player = {
                   }
                 });
               } else if (loc === "item") {
-                config.player.audio.saved.time = 0;
-                if (url) config.player.audio.src = url;
-                config.player.audio.value.set("src", config.player.audio.src);
-                /*  */
-                [...tmp].map(function (tr) {
-                  tr.removeAttribute("class");
-                  var speed = document.getElementById("podcast-speed");
-                  if (speed) speed.textContent = " Speed: 1.0x";
-                  var item = tr.querySelector('button[type="play"]').querySelector('i');
-                  if (tr.getAttribute("item-url") === config.player.audio.src) {
-                    /* add details */ addDetails(tr);
-                    if (item.getAttribute("class") === "fa fa-play") {
-                      config.player.audio.action.content = "pause";
-                      item.setAttribute("class", "fa fa-stop");
-                      tr.setAttribute("class", "highlight");
-                      /* play is trigged when canplay event is called */
+                if (url) {
+                  config.player.audio.src = url;
+                  config.player.audio.saved.time = 0;
+                  config.player.audio.value.set("src", config.player.audio.src);
+                  /*  */
+                  [...tmp].map(function (tr) {
+                    tr.removeAttribute("class");
+                    const speed = document.getElementById("podcast-speed");
+                    if (speed) speed.textContent = " Speed: 1.0x";
+                    const item = tr.querySelector('button[type="play"]').querySelector('i');
+                    if (tr.getAttribute("item-url") === config.player.audio.src) {
+                      /* add details */ addDetails(tr);
+                      if (item.getAttribute("class") === "fa fa-play") {
+                        config.player.audio.action.content = "pause";
+                        item.setAttribute("class", "fa fa-stop");
+                        tr.setAttribute("class", "highlight");
+                        /* play is trigged when canplay event is called */
+                      } else {
+                        config.player.audio.action.content = "play";
+                        item.setAttribute("class", "fa fa-play");
+                        config.player.audio.method("pause");
+                      }
                     } else {
-                      config.player.audio.action.content = "play";
                       item.setAttribute("class", "fa fa-play");
-                      config.player.audio.method("pause");
                     }
-                  } else {
-                    item.setAttribute("class", "fa fa-play");
+                  });
+                  /* play [main] */
+                  if (main) main.setAttribute("class", "fa fa-" + config.player.audio.action.content);
+                  if (config.player.audio.action.content === "play") {
+                    config.player.audio.current.time.text = "00:00:00";
+                    document.querySelector('div[type="currenttime"]').textContent = config.player.audio.current.time.text;
                   }
-                });
-                /* play [main] */
-                if (main) main.setAttribute("class", "fa fa-" + config.player.audio.action.content);
-                if (config.player.audio.action.content === "play") {
-                  config.player.audio.current.time.text = "00:00:00";
-                  document.querySelector('div[type="currenttime"]').textContent = config.player.audio.current.time.text;
                 }
               } else { /* pause the player */
                 config.player.audio.method("pause");
                 config.player.audio.action.content = "play";
                 if (main) main.setAttribute("class", "fa fa-play");
                 [...tmp].map(function (tr) {
-                  var play = tr.querySelector('button[type="play"]');
+                  const play = tr.querySelector('button[type="play"]');
                   if (play) {
-                    var item = play.querySelector('i');
+                    const item = play.querySelector('i');
                     item.setAttribute("class", "fa fa-play");
                     tr.removeAttribute("class");
                   }

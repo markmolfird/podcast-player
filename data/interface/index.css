@@ -23,8 +23,8 @@ body {
 }
 
 body, button, table tr td, p {
-  font-size: 12px;
-  font-family: arial, sans-serif;
+  font-size: 14px;
+  font-family: system-ui, sans-serif;
 }
 
 body * {
@@ -85,11 +85,11 @@ button::-moz-focus-inner {border: 0 !important}
 button::-moz-focus-outer {border: 0 !important}
 
 button[rule="color"] {
-  border-radius: 16px;
+  border-radius: 19px;
   padding: 0 !important;
-  width: 16px !important;
-  height: 16px !important;
-  margin: 0.5px !important;
+  width: 19px !important;
+  height: 19px !important;
+  margin: 0.5px 1.5px !important;
 }
 
 /* flashing */
@@ -115,8 +115,11 @@ input[type=range] {
   -webkit-appearance: none;
 }
 input[rule=player] {
-  height: 38px;
-  width: calc(100% - 38px);
+  height: 48px;
+  padding: 0 15px;
+  border-radius: 0;
+  box-sizing: border-box;
+  width: calc(100% - 25px);
   background-color: transparent;
 }
 input[type=range]::-webkit-slider-runnable-track {
@@ -194,6 +197,7 @@ input[name=intensity] {
 .highlight {outline: solid 1px #FF6A00 !important}
 .transparent {background-color: transparent !important}
 .litecolor {background-color: rgba(0,0,0,0.2) !important}
+.highlight table {background-color: transparent !important}
 
 .top-controls, .player-controls, .main-controls {
   border: 0;
@@ -268,7 +272,8 @@ input[name=intensity] {
 }
 
 .top-controls i {
-  font-size: 110%;
+  color: #333;
+  font-size: 150%;
 }
 
 .top-controls img {
@@ -291,6 +296,7 @@ input[name=intensity] {
 .top-controls div[type='duration'] {
   font-size: 110%;
   overflow: hidden;
+  font-weight: 600;
   text-align: right;
   padding-right: 10px;
   letter-spacing: 1px;
@@ -302,6 +308,7 @@ input[name=intensity] {
   font-size: 110%;
   text-align: left;
   overflow: hidden;
+  font-weight: 600;
   padding-left: 10px;
   letter-spacing: 1px;
   white-space: nowrap;
@@ -336,14 +343,16 @@ input[name=intensity] {
 }
 
 .intro #support button i, .intro #donation button i {
-  font-size: 100%;
+  font-size: 110%;
 }
 
 .main-controls {border-spacing: 1px 0}
 .main-controls i {padding: 10px 0 2px 0}
+
 .main-controls p {
   margin: 0;
   border: 0;
+  font-weight: 600;
   line-height: 18px;
   padding: 2px 5px 10px 5px;
 }
@@ -352,9 +361,10 @@ input[name=intensity] {
   margin: 0;
   padding: 0;
   table-layout: auto;
-  border-spacing: 10px;
+  border-spacing: 10px 12px;
   background-color: rgba(0,0,0,0.2);
 }
+
 .player-controls button {
   margin: 1px;
   background-color: #FF6A00;
@@ -364,6 +374,15 @@ input[name=intensity] {
   -moz-border-radius: calc(1.7em + 1.25vmin);
   -webkit-border-radius: calc(1.7em + 1.25vmin);
 }
+
+.player-controls button .fa {
+  font-size: 120%;
+}
+
+.player-controls .footer button .fa {
+  font-size: 150%;
+}
+
 .player-controls tr td[type="range"] {
   height: 48px;
   padding-top: 10px;
@@ -373,40 +392,56 @@ input[name=intensity] {
   vertical-align: middle;
   border: solid 1px rgb(255 255 255 / 10%);
 }
+
 .player-controls[position="bottom"] {
   bottom: 0;
   background-color: #3D3D3D;
 }
+
 .top-controls[position="top"] tbody, .player-controls[position="bottom"] tbody {
   background-color: #333333;
 }
+
 .player-controls tr td[rule="visibility"] {
   cursor: pointer;
   vertical-align: bottom;
   text-align: center !important;
 }
-.player-controls .left[type] i {font-weight: 600}
-.player-controls .right[type] i {font-weight: 600}
+
 .player-controls .left {padding: 10px 5px 10px 10px}
 .player-controls .right {padding: 10px 10px 10px 5px}
 .player-controls .left[rule="visibility"] {padding-left: 0}
 .player-controls .right[rule="visibility"] {padding-right: 0}
 
+.player-controls .left[type] i,
+.player-controls .right[type] i {
+  font-size: 150%;
+  font-weight: 600;
+}
+
 .player-controls .footer {
   background-color: transparent;
-  outline: solid 1px rgb(255 255 255 / 10%);
+  outline: solid 1px rgb(255 255 255 / 50%);
 }
+
+.player-controls .footer i {
+  font-family: system-ui, sans-serif;
+}
+
 .player-controls .footer i:before {
   font-family: FontAwesome, sans-serif;
 }
+
 .player-controls .center {
   text-align: center;
   width: calc(4em + 2vmin);
 }
+
 .player-controls .large {
   font-size: 200%;
   margin: 0 0 5px 0;
 }
+
 .player-controls .large i[class*='fa-play'] {
   margin-left: 4px;
 }
@@ -432,7 +467,13 @@ input[name=intensity] {
   text-align: center;
 }
 
-.item-n {margin: auto}
+.item-n {
+  margin: auto;
+}
+
+.item-n .item-image img {
+  margin: 10px 0 0 5px;
+}
 
 .item-c {
   margin: 5px auto;
@@ -465,6 +506,7 @@ input[name=intensity] {
 .item-c p {
   margin: 0;
   border: 0;
+  font-weight: 600;
   padding: 5px 10px;
   line-height: 32px;
   font-size: inherit;
@@ -486,7 +528,8 @@ input[name=intensity] {
 }
 
 .item-h p i {
-  padding: 0 5px 1px 0;
+  font-size: 150%;
+  padding: 0 5px 5px 0;
 }
 
 .item-c button {
@@ -508,14 +551,13 @@ table[type="choose"] button {
 .item-c button[type="check"] {
   margin: 0;
   padding: 0;
-  width: 48px;
+  width: 58px;
   box-sizing: border-box;
-  box-sizing: border-box;
-  background-color: transparent;
+  background-color: rgba(0,0,0,0.05);
 }
 
 .item-c button[type="check"] i {
-  font-size: 128%;
+  font-size: 150%;
 }
 
 .item-c .action-button button {
@@ -533,7 +575,9 @@ table[type="choose"] button {
   padding: 25px 0;
 }
 
-.item-c button[type="bookmark"] i {padding: 0 10px}
+.item-c button[type="bookmark"] i {
+  padding: 0 10px;
+}
 
 .item-c button[type="choose"], .item-c button[type="theme"], .item-c button[type="cache"] {
   margin: 0;
@@ -580,7 +624,7 @@ table[type="choose"] button {
   border: 0;
   margin: 0;
   padding: 0;
-  width: 42px;
+  width: 48px;
   height: 100%;
   display: block;
   cursor: pointer;
@@ -595,6 +639,14 @@ table[type="choose"] button {
   height: 50%;
 }
 
+.item-n button .fa {
+  font-size: 120%;
+}
+
+.item-n .combined button .fa {
+  font-size: 150%;
+}
+
 .item-n div {
   text-align: justify;
 }
@@ -604,10 +656,23 @@ table[type="choose"] button {
   padding: 0 10px;
 }
 
+.item-n .item-image {
+  border-left: solid 1px rgba(0,0,0,0.05) !important;
+}
+
+.item-n .item-duration {
+  padding-left: 15px !important;
+  border-left: solid 1px rgba(0,0,0,0.05) !important;
+}
+
 .item-bullet {
   width: 28px;
   padding: 5px;
   min-width: 28px;
+}
+
+.item-bullet .fa {
+  font-size: 120%;
 }
 
 .item-checkbox {
@@ -622,33 +687,37 @@ table[type="choose"] button {
 }
 
 .item-image {
-  width: 64px;
-  height: 64px;
-  max-width: 64px;
-  min-width: 64px;
-  max-height: 64px;
-  min-height: 64px;
+  width: 80px;
+  height: 74px;
+  max-width: 80px;
+  min-width: 80px;
+  max-height: 74px;
+  min-height: 74px;
   text-align: center;
 }
 
 .item-image img {
-  margin: 0;
   padding: 0;
   width: 100%;
+  margin: auto;
   height: auto;
   max-width: 64px;
   max-height: 64px;
-  text-align: right;
-  vertical-align: top;
+  vertical-align: middle;
 }
 
 .item-image i {
+  color: #555;
   width: 64px;
   height: 64px;
-  font-size: 300%;
+  font-size: 64px;
   line-height: 64px;
   text-align: center;
   vertical-align: middle;
+}
+
+.item-duration {
+  letter-spacing: 1px;
 }
 
 .item-title {
@@ -700,7 +769,7 @@ table[type="choose"] button {
 }
 
 .podcast-image i {
-  color: #969696;
+  color: #555;
   font-size: 1000%;
 }
 
@@ -716,6 +785,7 @@ table[type="choose"] button {
   line-height: 32px;
   text-indent: 10px;
   vertical-align: middle;
+  font-family: monospace;
 }
 
 div[class*="-tab"] {
@@ -735,6 +805,8 @@ div[class*="-tab"] {
   outline: none;
   margin: 0 5px;
   padding: 0 10px;
+  font-weight: 600;
+  line-height: 38px;
   vertical-align: middle;
   font-family: monospace;
   background-color: #ffffff;
@@ -757,8 +829,7 @@ div[class*="-tab"] {
 /*            Tab II            */
 /* ---------------------------  */
 
-.I-tab .intro,
-.II-tab .top-controls {
+.I-tab .intro, .II-tab .top-controls {
   border-left: solid 1px rgba(0,0,0,0.1);
   border-right: solid 1px rgba(0,0,0,0.1);
   border-bottom: solid 1px rgba(0,0,0,0.1);
@@ -833,10 +904,11 @@ div[class*="-tab"] {
 .II-tab #podcast-title {
   width: 100%;
   margin: auto;
+  font-size: 150%;
   text-align: center;
 }
 
- .title-flip button {
+.title-flip button {
   border: 0;
   padding: 0;
   outline: 0;
@@ -871,6 +943,11 @@ div[class*="-tab"] {
   padding: 0 10px 5px 10px;
 }
 
+.II-tab:has(.highlight) .player-controls tr td[type="range"] input {
+  border-radius: 24px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 /* ---------------------------- */
 /*            Tab III           */
 /* ---------------------------  */
@@ -896,6 +973,7 @@ div[class*="-tab"] {
   user-select: none;
   line-height: 48px;
   background-color: #4C4C4C;
+  background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.05), transparent 5px);
 }
 
 .III-tab .search tr td[type="text"], .III-tab .search .status {
@@ -911,6 +989,7 @@ div[class*="-tab"] {
   outline: none;
   padding: 0 5px;
   display: block;
+  font-size: 120%;
   text-align: center;
   width: calc(100% - 10px);
   background-color: #4C4C4C;
@@ -926,6 +1005,10 @@ div[class*="-tab"] {
   cursor: pointer;
   text-align: center;
   background-color: #FF6A00;
+}
+
+.III-tab .search button .fa {
+  font-size: 120%;
 }
 
 /* ---------------------------- */

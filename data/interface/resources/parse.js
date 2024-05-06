@@ -3,18 +3,18 @@ config.parse = {
     "to": {
       "feed": function (data) {
         if (data.url && data.result) {
-          var channel = data.result.querySelector("channel");
+          const channel = data.result.querySelector("channel");
           if (channel) {
-            var items = [...channel.querySelectorAll("item")];
-            var podcast = {"feed": {}, "items": [], "status": "error"};
+            const items = [...channel.querySelectorAll("item")];
+            const podcast = {"feed": {}, "items": [], "status": "error"};
             /*  */
-            var link = {};
+            const link = {};
             link.a = channel.querySelector("link");
             link.b = channel.querySelector("link[href]");
             link.c = channel.querySelector("link[href][rel='self']");
             link.r = link.c ? link.c.getAttribute("href") : (link.b ? link.b.getAttribute("href") : (link.a ? link.a.textContent : ''));
             /*  */
-            var image = {};
+            const image = {};
             image.a = channel.querySelector("image");
             image.b = image.a.getAttribute("href");
             image.c = image.a.querySelector("url");
@@ -29,13 +29,13 @@ config.parse = {
             podcast.feed.description = channel.querySelector("description") ? channel.querySelector("description").textContent : '';
             /*  */
             if (items) {
-              var max = items.length > config.general.podcast.cap ? config.general.podcast.cap : items.length;
-              for (var i = 0; i < max; i++) {
-                var item = items[i];
+              const max = items.length > config.general.podcast.cap ? config.general.podcast.cap : items.length;
+              for (let i = 0; i < max; i++) {
+                const item = items[i];
                 if (item) {
-                  var enclosure = item.querySelector("enclosure");
+                  const enclosure = item.querySelector("enclosure");
                   if (enclosure) {
-                    var url = enclosure.getAttribute("url");
+                    const url = enclosure.getAttribute("url");
                     if (url) {
                       podcast.items.push({
                         "categories": [],

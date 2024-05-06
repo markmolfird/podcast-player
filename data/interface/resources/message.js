@@ -1,8 +1,8 @@
 config.print = {
   "message": function (e) {
-    var search = document.querySelector(".III-tab .podcast-tile .search");
+    const search = document.querySelector(".III-tab .podcast-tile .search");
     if (search) {
-      var info = search.querySelector('div[type="info"]');
+      const info = search.querySelector('div[type="info"]');
       if (info) {
         if (e.name === "fetch") info.textContent = "Fetching feeds...";
         if (e.name === "storage") info.textContent = "Loading results...";
@@ -13,7 +13,7 @@ config.print = {
         if (e.name === "done") {
           try {
             info.textContent = "Loading results...";
-            var button = search.querySelector('button[type="search"]');
+            const button = search.querySelector('button[type="search"]');
             if (button) button.querySelector('i').setAttribute("class", "fa fa-search");
           } catch (e) {}
           /*  */
@@ -29,7 +29,7 @@ config.print = {
           if (config.UI.element.header.timeout) window.clearTimeout(config.UI.element.header.timeout);
           config.UI.element.header.timeout = window.setTimeout(function () {
             try {
-              var button = {};
+              const button = {};
               button.trash = search.querySelector('button[type="trash"]');
               button.search = search.querySelector('button[type="search"]');
               button.retweet = search.querySelector('button[type="retweet"]');

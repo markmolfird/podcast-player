@@ -32,12 +32,12 @@ config.app = {
   },
   "refresh": function () {
     config.log(" • refreshing podcasts data...");
-    var refresh = document.querySelector('.top-controls button[type="refresh"]');
+    const refresh = document.querySelector('.top-controls button[type="refresh"]');
     /* */
-    var action = function (arr, callback) {
+    const action = function (arr, callback) {
       if (arr && arr.length) {
         (function loop(arr, index) {
-          var url = arr[index];
+          const url = arr[index];
           if (url) {
             config.fetch.podcast.track(url, "subscribed", false, function () {
               if (++index < arr.length) {
@@ -63,21 +63,26 @@ config.app = {
   },
   "notifications": {
     "id": "podcast-player-prime-notifications",
-    "clear": function () {chrome.notifications.clear(config.app.notifications.id, function () {})},
+    "clear": function () {
+      chrome.notifications.clear(config.app.notifications.id, function () {});
+    },
     "vibrate": {
       "time": 17,
       "permission": false,
       "action": function (e, t) {
         if (config.app.notifications.vibrate.permission) {
           if (config.core.options.buttonVibrate.content === true) {
-            if (navigator.vibrate) navigator.vibrate(config.app.notifications.vibrate.time);
+            if (navigator.vibrate) {
+              navigator.vibrate(config.app.notifications.vibrate.time);
+            }
           }
         }
       }
     },
     "create": function (o, callback) {
-      if (o.type === "confirm") callback(window.confirm(o.message));
-      else if (o.type === "normal" || o.type === "alert") {
+      if (o.type === "confirm") {
+        callback(window.confirm(o.message));
+      } else if (o.type === "normal" || o.type === "alert") {
         if (config.port.name !== "webapp") {
           chrome.notifications.create(config.app.notifications.id, {
             "type": 'basic',

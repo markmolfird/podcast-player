@@ -2,8 +2,8 @@ config.UI = {
   "style": {
     "font": {
       get size () {
-        var o = config.settings["config.UI.style.font.size"];
-        return (o && 'V' in o) ? o.V : "12px";
+        const o = config.settings["config.UI.style.font.size"];
+        return (o && 'V' in o) ? o.V : "14px";
       },
       set size (val) {
         if (val) {
@@ -15,22 +15,24 @@ config.UI = {
   },
   "footer": {
     "make": function (tr, txt, cls, colspan, button, type) {
-      var td = document.createElement('td');
+      const td = document.createElement('td');
       if (cls) td.setAttribute("class", cls);
       if (colspan) td.setAttribute("colspan", colspan);
       td.textContent = txt || "Unknown";
       tr.appendChild(td);
       /*  */
       if (button) {
-        var td = document.createElement('td');
+        const td = document.createElement('td');
         if (cls) td.setAttribute("class", cls);
-        var button = document.createElement('button');
-        var i = document.createElement('i');
+        const button = document.createElement('button');
+        const i = document.createElement('i');
         if (type) button.setAttribute("type", type);
+        /*  */
         button.addEventListener("click", function (e) {
           config.app.notifications.vibrate.action(e, this);
           config.UI.button.action(this, this.getAttribute("type"));
         });
+        /*  */
         if (type) i.setAttribute("class", "fa fa-" + type);
         button.appendChild(i);
         td.appendChild(button);
@@ -45,8 +47,8 @@ config.UI = {
         else if (t.getAttribute("type") === "expand") config.UI.controls.visibility.show();
       },
       "show": function () {
-        var footer = document.querySelectorAll(".footer");
-        var visibility = document.querySelectorAll('td[rule="visibility"]');
+        const footer = document.querySelectorAll(".footer");
+        const visibility = document.querySelectorAll('td[rule="visibility"]');
         /*  */
         [...footer].map(function (elm) {
           elm.classList.remove('visuallyhidden');
@@ -59,8 +61,8 @@ config.UI = {
         });
       },
       "hide": function () {
-        var footer = document.querySelectorAll(".footer");
-        var visibility = document.querySelectorAll('td[rule="visibility"]');
+        const footer = document.querySelectorAll(".footer");
+        const visibility = document.querySelectorAll('td[rule="visibility"]');
         /*  */
         [...footer].map(function (elm) {
           setTimeout(function () {elm.classList.add("hidden")}, 300);
@@ -77,8 +79,8 @@ config.UI = {
   "refresh": {
     "timeout": '',
     get interval () {
-      var o = config.settings["config.UI.refresh.interval"];
-      var v = (o && 'V' in o) ? o.V : "24";
+      const o = config.settings["config.UI.refresh.interval"];
+      const v = (o && 'V' in o) ? o.V : "24";
       return parseInt(v);
     },
     set interval (val) {
@@ -86,16 +88,16 @@ config.UI = {
       config.storage.write(config.general.id.settings, config.settings);
     },
     "start": function () {
-      var refresh = document.querySelector('button[type="refresh"]');
+      const refresh = document.querySelector('button[type="refresh"]');
       if (refresh) refresh.querySelector('i').className = "fa fa-retweet fa-spin";
       config.UI.refresh.stop();
     },
     "stop": function (flag) {
-      var stop = function () {
-        var refresh = document.querySelector('button[type="refresh"]');
+      const stop = function () {
+        const refresh = document.querySelector('button[type="refresh"]');
         if (refresh) refresh.querySelector('i').className = "fa fa-retweet";
         /*  */
-        var trashAll = document.querySelector('button[type="trash-all"]');
+        const trashAll = document.querySelector('button[type="trash-all"]');
         if (trashAll) trashAll.querySelector('i').className = "fa fa-trash";
       };
       if (config.UI.refresh.timeout) window.clearTimeout(config.UI.refresh.timeout);
@@ -104,9 +106,10 @@ config.UI = {
     "check": function () {
       config.log(" • check auto refresh");
       if (config.core.options.autoRefresh.content) {
-        var newDate = new Date();
-        var oldDate = new Date(config.core.options.autoRefresh.content);
-        var hours = (newDate - oldDate) / 1000 / 60 / 60;
+        const newDate = new Date();
+        const oldDate = new Date(config.core.options.autoRefresh.content);
+        const hours = (newDate - oldDate) / 1000 / 60 / 60;
+        /*  */
         if (hours > config.UI.refresh.interval) {
           config.app.refresh();
           config.core.options.autoRefresh.content = newDate.toString();

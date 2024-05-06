@@ -2,34 +2,34 @@ config.UI.page = {
   "header": {
     "search": {
       "make": function (page) {
-        var placeholder = "enter any keyword(s) then hit on the search icon";
-        var element = config.UI.element.header.double.row.make(placeholder, "search");
+        const placeholder = "enter any keyword(s) then hit on the search icon";
+        const element = config.UI.element.header.double.row.make(placeholder, "search");
         if (element) page.appendChild(element);
       }
     },
     "feed": {
       "make": function (page) {
-        var placeholder = "enter feed URL then hit on the search icon";
-        var element = config.UI.element.header.double.row.make(placeholder, "feed");
+        const placeholder = "enter feed URL then hit on the search icon";
+        const element = config.UI.element.header.double.row.make(placeholder, "feed");
         if (element) page.appendChild(element);
       }
     },
     "topchart": {
       "make": function (page) {
-        var element = config.UI.element.header.single.row.make(true, "topchart");
+        const element = config.UI.element.header.single.row.make(true, "topchart");
         if (element) page.appendChild(element);
       }
     },
     "subscribed": {
       "make": function (page) {
-        var element = config.UI.element.header.single.row.make(false, "subscribed");
+        const element = config.UI.element.header.single.row.make(false, "subscribed");
         if (element) page.appendChild(element);
       }
     }
   },
   "options": {
     get key () {
-      var o = config.settings["config.UI.page.options.key"];
+      const o = config.settings["config.UI.page.options.key"];
       return (o && 'V' in o) ? o.V : "general";
     },
     set key (val) {
@@ -39,15 +39,15 @@ config.UI.page = {
       }
     },
     "make": function () {
-      var page = document.querySelector(".IIIII-tab .podcast-list");
+      const page = document.querySelector(".IIIII-tab .podcast-list");
       config.UI.handle.tabs(".IIIII-tab", page);
       /*  */
       if (page) page.textContent = '';
       [...document.querySelector('.IIIII-tab').querySelectorAll('button')].map(function (elm) {elm.removeAttribute("selected")});
       document.querySelector('.IIIII-tab').querySelector('button[type=' + config.UI.page.options.key + ']').setAttribute("selected", true);
       /*  */
-      var tab = document.querySelector(".IIIII-tab");
-      var options = tab.querySelectorAll("div[rule='options']");
+      const tab = document.querySelector(".IIIII-tab");
+      const options = tab.querySelectorAll("div[rule='options']");
       [...options].map(function (elm) {
         (elm.getAttribute("type") === config.UI.page.options.key) ? elm.style.display = "block" : elm.style.display = "none";
       });
@@ -58,7 +58,7 @@ config.UI.page = {
   },
   "cache": {
     get render () {
-      var o = config.settings["config.UI.page.cache.render"];
+      const o = config.settings["config.UI.page.cache.render"];
       return (o && 'V' in o) ? o.V : false;
     },
     set render (val) {
@@ -68,7 +68,7 @@ config.UI.page = {
       }
     },
     get key () {
-      var o = config.settings["config.UI.page.cache.key"];
+      const o = config.settings["config.UI.page.cache.key"];
       return (o && 'V' in o) ? o.V : "image";
     },
     set key (val) {
@@ -87,8 +87,8 @@ config.UI.page = {
     },
     "palette": {
       "make": function () {
-        var tab = document.querySelector(".IIIII-tab");
-        var choose = tab.querySelector("div[type='" + config.UI.page.options.key + "']").querySelector("table[type='choose']");
+        const tab = document.querySelector(".IIIII-tab");
+        const choose = tab.querySelector("div[type='" + config.UI.page.options.key + "']").querySelector("table[type='choose']");
         [...choose.querySelectorAll("button[rule]")].map(function (elm) {elm.removeAttribute("selected")});
         choose.querySelector("button[rule='" + config.UI.page.cache.key + "']").setAttribute("selected", true);
         /*  */
@@ -101,8 +101,8 @@ config.UI.page = {
     "make": function (tr, item, cls, drag) {
       config.UI.track.drag(tr, drag);
       /*  */
-      var obj = {};
-      var nor = item.enclosure ? "two" : "one";
+      const obj = {};
+      const nor = item.enclosure ? "two" : "one";
       obj.url = tr.getAttribute("item-url") || '';
       obj.data = item.pubDate ? (new Date(item.pubDate)).toDateString() : '';
       obj.length = item.enclosure ? (item.enclosure.length ? item.enclosure.length : '') : '';
@@ -110,23 +110,24 @@ config.UI.page = {
       obj.src = item.image ? item.image : (item.thumbnail ? item.thumbnail : (item.feed ? item.feed.image : (item.path ? item.path : '')));
       obj.title = item.title ? item.title : (item.feed ? item.feed.title : '') + " - " + (item.items ? item.items.length + " Episodes" : '');
       /*  */
-      var td = document.createElement('td');
+      const td = document.createElement('td');
       td.setAttribute("class", "extra");
       /*  */
       (function (elm, obj) {
-        var table = document.createElement('table');
+        let tr = null;
+        const table = document.createElement('table');
         if (nor === "two") {
-          var tr = document.createElement('tr');
+          tr = document.createElement('tr');
           config.UI.element.text.make(tr, (obj.data ? obj.data + " - " : '') + obj.title, "item-description");
           config.UI.image.make.element(tr, null, obj.src, "item-image", 64);
           table.appendChild(tr);
           /*  */
-          var length = obj.length ? config.UI.track.size(Number(obj.length)) : "Unknown Size";
-          var duration = obj.duration ? ((obj.duration + '').indexOf(':') !== -1 ? obj.duration : config.general.fn.toHHMMSS(Number(obj.duration))) : "00:00:00";
+          const length = obj.length ? config.UI.track.size(Number(obj.length)) : "Unknown Size";
+          const duration = obj.duration ? ((obj.duration + '').indexOf(':') !== -1 ? obj.duration : config.general.fn.toHHMMSS(Number(obj.duration))) : "00:00:00";
           /*  */
-          var tr = document.createElement('tr');
-          var td2 = config.UI.element.text.make(tr, length, "item-description left item-length");
-          var td1 = config.UI.element.text.make(tr, duration, "item-description center item-duration");
+          tr = document.createElement('tr');
+          const td2 = config.UI.element.text.make(tr, length, "item-description left item-length");
+          const td1 = config.UI.element.text.make(tr, duration, "item-description center item-duration");
           /*  */
           if (duration === "00:00:00") {
             config.UI.track.reload.duration(td1, obj);
@@ -135,7 +136,7 @@ config.UI.page = {
           table.appendChild(tr);
           elm.appendChild(table);
         } else { /* for settings page */
-          var tr = document.createElement('tr');
+          tr = document.createElement('tr');
           config.UI.element.text.make(tr, obj.title, "item-description");
           config.UI.image.make.element(tr, null, obj.src, "item-image", 64);
           table.appendChild(tr);
@@ -154,7 +155,7 @@ config.UI.page = {
   },
   "color": {
     get key () {
-      var o = config.settings["config.UI.page.color.key"];
+      const o = config.settings["config.UI.page.color.key"];
       return (o && 'V' in o) ? o.V : "button";
     },
     set key (val) {
@@ -172,12 +173,12 @@ config.UI.page = {
     },
     "palette": {
       "make": function () {
-        var tab = document.querySelector(".IIIII-tab");
+        const tab = document.querySelector(".IIIII-tab");
         /*  */
-        var intensity = tab.querySelector('input[name="intensity"]');
+        const intensity = tab.querySelector('input[name="intensity"]');
         intensity.value = config.settings.color ? (config.settings.color.intensity || '10') : '10';
         /*  */
-        var choose = tab.querySelector("div[type='" + config.UI.page.options.key + "']").querySelector("table[type='choose']");
+        const choose = tab.querySelector("div[type='" + config.UI.page.options.key + "']").querySelector("table[type='choose']");
         [...choose.querySelectorAll("button[rule]")].map(function (elm) {elm.removeAttribute("selected")});
         choose.querySelector("button[rule='" + config.UI.page.color.key + "']").setAttribute("selected", true);
         /*  */
@@ -188,18 +189,19 @@ config.UI.page = {
     },
     "element": {
       "make": function (name) {
-        var tab = document.querySelector(".IIIII-tab");
-        var element = tab.querySelector("td[type='color-" + name + "']");
+        const tab = document.querySelector(".IIIII-tab");
+        const element = tab.querySelector("td[type='color-" + name + "']");
         element.textContent = '';
         /*  */
-        var a = 1, b = 0, c = 0, CGCA = config.UI.page.color.array[name];
-        for (var i = 1; i <= CGCA.length; i++) {
-          var button = document.createElement("button");
+        let a = 1, b = 0, c = 0;
+        const CGCA = config.UI.page.color.array[name];
+        for (let i = 1; i <= CGCA.length; i++) {
+          const button = document.createElement("button");
           button.setAttribute("rule", "color");
           button.setAttribute("name", config.UI.page.color.key);
           button.style.backgroundColor = CGCA[i - 1];
           button.addEventListener("click", function (e) {
-            var rgb = this.getAttribute("style");
+            let rgb = this.getAttribute("style");
             config.app.notifications.vibrate.action(e, this);
             rgb = rgb.replace("background-color: ", '').replace(';', '');
             config.storage.update.color(this.getAttribute("name"), rgb);
@@ -209,7 +211,7 @@ config.UI.page = {
           /*  */
           if (name === "full") {
             if (i === 7 * a + b) {
-              var br = document.createElement("br");
+              const br = document.createElement("br");
               element.appendChild(br);
               a = a + 1;
               i > (CGCA.length / 2 - 1) ? c = c - 1 : c = c + 1;
@@ -222,7 +224,7 @@ config.UI.page = {
   },
   "front": {
     get key () {
-      var o = config.settings["config.UI.page.front.key"];
+      const o = config.settings["config.UI.page.front.key"];
       return (o && 'V' in o) ? o.V : null;
     },
     set key (val) {
@@ -232,14 +234,15 @@ config.UI.page = {
       }
     },
     "fill": function (arr, index, callback) {
-      var tables = {};
+      let tr = null;
+      const tables = {};
       (function loop(arr, index) {
-        var url = arr[index];
+        const url = arr[index];
         if (url) {
-          var podcast = config.settings.episodes.subscribed[url];
+          const podcast = config.settings.episodes.subscribed[url];
           if (podcast && podcast.items.length) {
-            var table = document.createElement('table');
-            var tr = document.createElement('tr');
+            const table = document.createElement('table');
+            tr = document.createElement('tr');
             /*  */
             table.setAttribute("class", "item-c");
             table.setAttribute("podcast-url", url);
@@ -254,8 +257,8 @@ config.UI.page = {
             /*  */
             table.appendChild(tr);
             /*  */
-            var tr = document.createElement('tr');
-            var pubdate = podcast.items[0].pubDate ? " - Latest episode " + (new Date(podcast.items[0].pubDate)).toDateString() : '';
+            tr = document.createElement('tr');
+            const pubdate = podcast.items[0].pubDate ? " - Latest episode " + (new Date(podcast.items[0].pubDate)).toDateString() : '';
             config.UI.footer.make(tr, podcast.items.length + " episodes" + pubdate, "item-title", null, true, "refresh");
             table.appendChild(tr);
             /*  */
@@ -268,26 +271,26 @@ config.UI.page = {
       })(arr, index);
     },
     "make": function () {
-      var clean = function (htw) {
+      const clean = function (htw) {
         if (page) page.textContent = '';
         htw.setAttribute("class", "how-to-work-show");
       };
       /*  */
-      var page = document.querySelector(".I-tab .podcast-tile");
-      var htw = document.querySelector('div[class*="how-to-work"]');
+      const page = document.querySelector(".I-tab .podcast-tile");
+      const htw = document.querySelector('div[class*="how-to-work"]');
       if (page) {
         config.UI.handle.tabs(".I-tab", page);
-        var content = document.querySelector(".content");
+        const content = document.querySelector(".content");
         if (content) content.scrollTop = 0;
         /*  */
         if (config.settings.episodes) {
           if (config.settings.episodes.subscribed) {
-            var keys = Object.keys(config.settings.episodes.subscribed);
+            const keys = Object.keys(config.settings.episodes.subscribed);
             if (keys.length) {
               htw.setAttribute("class", "how-to-work-hide");
               config.UI.page.front.fill(keys, 0, function (e) {
                 page.textContent = '';
-                for (var id in e) {
+                for (let id in e) {
                   page.appendChild(e[id]);
                 }
               });
@@ -299,7 +302,7 @@ config.UI.page = {
   },
   "result": {
     get key () {
-      var o = config.settings["config.UI.page.result.key"];
+      const o = config.settings["config.UI.page.result.key"];
       return (o && 'V' in o) ? o.V : "topchart";
     },
     set key (val) {
@@ -309,8 +312,8 @@ config.UI.page = {
       }
     },
     get limit () {
-      var o = config.settings["config.UI.page.result.limit"];
-      var v = (o && 'V' in o) ? o.V : "10";
+      const o = config.settings["config.UI.page.result.limit"];
+      const v = (o && 'V' in o) ? o.V : "10";
       return parseInt(v);
     },
     set limit (val) {
@@ -322,7 +325,7 @@ config.UI.page = {
     },
     "make": function (e) {
       config.log(" • loading results from: " + e.from);
-      var page = document.querySelector(".III-tab .podcast-tile");
+      const page = document.querySelector(".III-tab .podcast-tile");
       if (page) {
         config.UI.handle.tabs(".III-tab", page);
         [...document.querySelector('.III-tab').querySelectorAll('button')].map(function (elm) {elm.removeAttribute("selected")});
@@ -332,14 +335,14 @@ config.UI.page = {
         config.UI.page.header[config.UI.page.result.key].make(page);
         /*  */
         window.setTimeout(function () {
-          var list = config.settings.episodes[config.UI.page.result.key];
+          const list = config.settings.episodes[config.UI.page.result.key];
           if (list) {
-            var count = 0;
-            var keys = Object.keys(list);
+            let count = 0;
+            const keys = Object.keys(list);
             (function loop(arr, index) {
-              var id = arr[index];
-              var podcast = list[id];
-              var flag = podcast && (podcast.type === ("podcast." + config.UI.page.result.key));
+              const id = arr[index];
+              const podcast = list[id];
+              const flag = podcast && (podcast.type === ("podcast." + config.UI.page.result.key));
               if (flag) {
                 config.UI.element.item.make(page, podcast, ++count, function () {
                   if (++index < arr.length) {
@@ -359,7 +362,7 @@ config.UI.page = {
   },
   "settings": {
     get key () {
-      var o = config.settings["config.UI.page.settings.key"];
+      const o = config.settings["config.UI.page.settings.key"];
       return (o && 'V' in o) ? o.V : "search";
     },
     set key (val) {
@@ -371,35 +374,35 @@ config.UI.page = {
     "make": function () {
       if (config.UI.page.settings.key === "color") return;
       /*  */
-      var page = document.querySelector(".IIII-tab .podcast-list");
+      const page = document.querySelector(".IIII-tab .podcast-list");
       config.UI.handle.tabs(".IIII-tab", page);
-      var table = document.createElement('table');
+      const table = document.createElement('table');
       table.setAttribute("id", "playlist-table");
       table.setAttribute("class", "item-n");
       config.UI.drag.init(table);
       /*  */
       if (page) page.textContent = '';
       [...document.querySelector('.IIII-tab').querySelectorAll('button')].map(function (elm) {elm.removeAttribute("selected")});
-      var button = document.querySelector('.IIII-tab').querySelector('button[type=' + config.UI.page.settings.key + ']');
+      const button = document.querySelector('.IIII-tab').querySelector('button[type=' + config.UI.page.settings.key + ']');
       if (button) button.setAttribute("selected", true);
       /*  */
-      var arr = Object.keys(config.settings.episodes.subscribed ? config.settings.episodes.subscribed : []);
+      const arr = Object.keys(config.settings.episodes.subscribed ? config.settings.episodes.subscribed : []);
       if (arr) {
         (function loop(arr, index) {
-          var url = arr[index];
+          const url = arr[index];
           if (url) {
-            var podcast = config.settings.episodes.subscribed[url];
+            const podcast = config.settings.episodes.subscribed[url];
             if (podcast) {
-              var items = podcast.items;
-              for (var i = 0; i < items.length; i++) {
-                var track = items[i];
+              const items = podcast.items;
+              for (let i = 0; i < items.length; i++) {
+                const track = items[i];
                 if (track && track[config.UI.page.settings.key]) {
-                  var option = {};
+                  const option = {};
                   if (config.UI.page.settings.key === "seen") option.eye = "eye";
                   if (config.UI.page.settings.key === "playlist") option.plus = "plus-circle";
                   if (config.UI.page.settings.key === "downloaded") option.download = "check";
                   /*  */
-                  var tr = document.createElement("tr");
+                  const tr = document.createElement("tr");
                   tr.setAttribute("item-url", track.enclosure.link);
                   config.UI.page.track.make(tr, track, '', false);
                   config.UI.button.single.make(tr, option);
@@ -422,7 +425,7 @@ config.UI.page = {
   },
   "player": {
     get key () {
-      var o = config.settings["config.UI.page.player.key"];
+      const o = config.settings["config.UI.page.player.key"];
       return (o && 'V' in o) ? o.V : '';
     },
     set key (val) {
@@ -432,14 +435,14 @@ config.UI.page = {
       }
     },
     "tracks": function (podcast) {
-      var table = document.createElement('table');
+      const table = document.createElement('table');
       table.setAttribute("class", "item-n");
       table.setAttribute("id", "items-table");
       table.setAttribute("podcast-url", config.UI.page.player.key);
       /*  */
-      for (var i = 0; i < podcast.items.length; i++) {
-        var track = podcast.items[i];
-        var tr = config.UI.page.player.track(track);
+      for (let i = 0; i < podcast.items.length; i++) {
+        const track = podcast.items[i];
+        const tr = config.UI.page.player.track(track);
         if (tr) {
           tr.setAttribute("podcast-url", podcast.url);
           tr.setAttribute("podcast-image", podcast.feed.image);
@@ -450,22 +453,23 @@ config.UI.page = {
       return table;
     },
     "make": function () {
-      var page = document.querySelector(".II-tab .podcast-list");
+      let table = null;
+      const page = document.querySelector(".II-tab .podcast-list");
       config.UI.handle.tabs(".II-tab", page);
       /*  */
-      var current = config.settings.episodes.subscribed && (config.UI.page.player.key in config.settings.episodes.subscribed);
+      const current = config.settings.episodes.subscribed && (config.UI.page.player.key in config.settings.episodes.subscribed);
       if (current) {
-        var podcast = config.settings.episodes.subscribed[config.UI.page.player.key];
+        const podcast = config.settings.episodes.subscribed[config.UI.page.player.key];
         if (podcast && podcast.items) {
-          var td = document.querySelector(".podcast-image");
+          const td = document.querySelector(".podcast-image");
           config.UI.image.make.element(null, td, podcast.feed.image, null, 200);
           /*  */
-          var minutes = config.player.audio.sleep.array[config.player.audio.sleep.index];
+          const minutes = config.player.audio.sleep.array[config.player.audio.sleep.index];
           document.querySelector('div[type="currenttime"]').textContent = config.player.audio.current.time.text;
           document.getElementById("podcast-title").textContent = podcast.feed.title + " - " + podcast.feed.author;
           document.getElementById("podcast-sleep").textContent = minutes ? (" " + minutes + " Minutes") : (" Timer: OFF");
           /*  */
-          var table = document.getElementById("items-table");
+          table = document.getElementById("items-table");
           if (table) table.remove();
           table = config.UI.page.player.tracks(podcast);
           if (page) page.textContent = '';
@@ -475,15 +479,15 @@ config.UI.page = {
     },
     "track": function (track) {
       if (track && track.enclosure && track.enclosure.link) {
-        var tr = document.createElement("tr");
+        const tr = document.createElement("tr");
         tr.setAttribute("item-url", track.enclosure.link);
         /*  */
-        var seen = track.seen ? '' : "eye-slash";
-        var plus = track.playlist ? "plus-circle" : '';
-        var download = track.downloaded ? "check" : "download";
-        var flag1 = config.player.audio.action.content === "pause";
-        var flag2 = config.player.audio.src === track.enclosure.link;
-        var status = flag1 && flag2 ? "highlight" : '';
+        const seen = track.seen ? '' : "eye-slash";
+        const plus = track.playlist ? "plus-circle" : '';
+        const download = track.downloaded ? "check" : "download";
+        const flag1 = config.player.audio.action.content === "pause";
+        const flag2 = config.player.audio.src === track.enclosure.link;
+        const status = flag1 && flag2 ? "highlight" : '';
         /*  */
         config.UI.button.single.make(tr, {"play": ''});
         config.UI.page.track.make(tr, track, status, false);
@@ -517,7 +521,7 @@ config.UI.page = {
   },
   "update": {
     get key () {
-      var o = config.settings["config.UI.page.update.key"];
+      const o = config.settings["config.UI.page.update.key"];
       return (o && 'V' in o) ? o.V : "front";
     },
     set key (val) {
@@ -527,21 +531,22 @@ config.UI.page = {
       }
     },
     "interface": function () {
-      var key = config.UI.page.update.key;
+      const key = config.UI.page.update.key;
       if (!key) config.log(" • ERROR: unkown page key");
       else {
         config.UI.page.update.theme();
         config.UI.page[key].make(key === "result" ? {"from": "cache"} : config.UI.page[key].key);
         /*  */
-        var svglogo = document.querySelector('#svglogo');
+        const svglogo = document.querySelector('#svglogo');
         if (svglogo) svglogo.removeAttribute("class");
         config.log(" • tab: " + key + " page");
       }
     },
     "theme": function () {
+      let style = null;
       config.log(" • updating theme");
-      var color = config.settings.color;
-      var style = document.getElementById("update.theme.style");
+      const color = config.settings.color;
+      style = document.getElementById("update.theme.style");
       if (!style) {
         style = document.createElement("style");
         style.setAttribute("id", "update.theme.style");
