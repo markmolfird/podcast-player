@@ -1,5 +1,5 @@
 {
-  "version": "0.2.5",
+  "version": "0.2.6",
   "manifest_version": 3,
   "name": "Podcast Player Prime",
   "host_permissions": ["*://*/*"],

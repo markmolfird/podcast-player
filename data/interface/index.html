@@ -107,15 +107,27 @@
             <tr>
               <td type="range" colspan=5>
                 <audio></audio>
-                <input type="range" rule="player" min="0" max="100" value="0" step="0.001"></input>
+                <input type="range" rule="player" min="0" max="100" value="0" step="0.001">
               </td>
             </tr>
             <tr>
-              <td class="left" type="expand" rule="visibility"><i class="fa fa-angle-down"></i></td>
-              <td class="right"><button type="backward"><i class="fa fa-backward"></i></button><button type="f-backward"><i class="fa fa-fast-backward"></i></button></td>
-              <td class="center"><button class="large" type="play"><i class="fa fa-play"></i></button></td>
-              <td class="left"><button type="f-forward"><i class="fa fa-fast-forward"></i></button><button type="forward"><i class="fa fa-forward"></i></button></td>
-              <td class="right" type="expand" rule="visibility"><i class="fa fa-angle-down"></i></td>
+              <td class="left" type="expand" rule="visibility">
+                <i class="fa fa-angle-down"></i>
+              </td>
+              <td class="right">
+                <button type="backward" title="Previous"><i class="fa fa-backward"></i></button>
+                <button type="f-backward" title="Fast Backward"><i class="fa fa-fast-backward"></i></button>
+              </td>
+              <td class="center">
+                <button class="large" type="play" title="Play"><i class="fa fa-play"></i></button>
+              </td>
+              <td class="left">
+                <button type="f-forward" title="Fast Forward"><i class="fa fa-fast-forward"></i></button>
+                <button type="forward" title="Next"><i class="fa fa-forward"></i></button>
+              </td>
+              <td class="right" type="expand" rule="visibility">
+                <i class="fa fa-angle-down"></i>
+              </td>
             </tr>
             <tr class="footer hidden visuallyhidden">
               <td colspan=2 class="left"><button type="speed"><i class="fa fa-angle-double-right"></i></button><button type="seen"><i class="fa fa-eye-slash"></i></button></td>
@@ -207,7 +219,7 @@
             </table>
             <table class="item-c transparent" type="choose">
               <tr>
-                <td><input type="range" rule="color" name="intensity" min='0' max='90' value='20' step='1'></input></td>
+                <td><input type="range" rule="color" name="intensity" min='0' max='90' value='20' step='1'></td>
               </tr>
             </table>
             <table class="item-c transparent" type="choose">
@@ -232,14 +244,14 @@
               <tr>
                 <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
                 <td class="item-options">Mark episodes as seen when the end is reached</td>
-                <td class="item-checkbox"><input id="markAsSeen" type="checkbox"></input></td>
+                <td class="item-checkbox"><input id="markAsSeen" type="checkbox"></td>
               </tr>
             </table>
             <table class="item-c">
               <tr>
                 <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
                 <td class="item-options"></td>
-                <td class="item-checkbox"><input id="autoRefresh" type="checkbox"></input></td>
+                <td class="item-checkbox"><input id="autoRefresh" type="checkbox"></td>
               </tr>
             </table>
             <table class="item-c">
@@ -262,35 +274,35 @@
               <tr>
                 <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
                 <td class="item-options">Enable new episodes automatic download (currently not available)</td>
-                <td class="item-checkbox"><input type="checkbox" disabled></input></td>
+                <td class="item-checkbox"><input type="checkbox" disabled></td>
               </tr>
             </table>
             <table class="item-c">
               <tr>
                 <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
                 <td class="item-options">Delete downloaded episodes when the end is reached</td>
-                <td class="item-checkbox"><input id="autoDelete" type="checkbox"></input></td>
+                <td class="item-checkbox"><input id="autoDelete" type="checkbox"></td>
               </tr>
             </table>
             <table class="item-c">
               <tr>
                 <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
                 <td class="item-options">Within player page, when I scroll, re-position the player toolbar and top banner</td>
-                <td class="item-checkbox"><input id="scrollAction" type="checkbox"></input></td>
+                <td class="item-checkbox"><input id="scrollAction" type="checkbox"></td>
               </tr>
             </table>
             <table class="item-c">
               <tr>
                 <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
                 <td class="item-options">When I click on a button, vibrate the device (15 milliseconds)</td>
-                <td class="item-checkbox"><input id="buttonVibrate" type="checkbox"></input></td>
+                <td class="item-checkbox"><input id="buttonVibrate" type="checkbox"></td>
               </tr>
             </table>
             <table class="item-c">
               <tr>
                 <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
                 <td class="item-options">Show notifications</td>
-                <td class="item-checkbox"><input id="showNotifications" type="checkbox"></input></td>
+                <td class="item-checkbox"><input id="showNotifications" type="checkbox"></td>
               </tr>
             </table>
             <table class="item-c">
@@ -317,7 +329,7 @@
             <table class="item-c">
               <tr>
                 <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
-                <td class="item-options">For each podcast, fetch maximum <input class="settings-number" id="podcastCap" type="number" placeholder="15" min=1></input> episodes.</td>
+                <td class="item-options">For each podcast, fetch maximum <input class="settings-number" id="podcastCap" type="number" placeholder="15" min=1> episodes.</td>
               </tr>
               <tr>
                 <td class="item-bullet"><i class="fa fa-bell-o"></i></td>
@@ -327,7 +339,7 @@
             <table class="item-c">
               <tr>
                 <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
-                <td class="item-options">When I search for any keyword, fetch maximum <input class="settings-number" id="maxSearch" type="number" placeholder="10" min=1 max=50></input> items.</td>
+                <td class="item-options">When I search for any keyword, fetch maximum <input class="settings-number" id="maxSearch" type="number" placeholder="10" min=1 max=50> items.</td>
               </tr>
               <tr>
                 <td class="item-bullet"><i class="fa fa-bell-o"></i></td>
@@ -344,11 +356,11 @@
               <tr>
                 <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
                 <td class="item-options">Make thumbnail for all images.</td>
-                <td class="item-checkbox"><input id="imageThumbnail" type="checkbox"></input></td>
+                <td class="item-checkbox"><input id="imageThumbnail" type="checkbox"></td>
               </tr>
               <tr>
                 <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
-                <td class="item-options">Resize (scale down) all thumbnails to <input class="settings-number" id="imageScale" type="number" placeholder="100" min=1 max=100></input>% of the original size.</td>
+                <td class="item-options">Resize (scale down) all thumbnails to <input class="settings-number" id="imageScale" type="number" placeholder="100" min=1 max=100>% of the original size.</td>
               </tr>
               <tr>
                 <td class="item-bullet"><i class="fa fa-bell-o"></i></td>
@@ -359,7 +371,7 @@
               <tr>
                 <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
                 <td class="item-options">Do NOT fetch any image (only text and audio data will be downloaded)</td>
-                <td class="item-checkbox"><input id="blockImage" type="checkbox"></input></td>
+                <td class="item-checkbox"><input id="blockImage" type="checkbox"></td>
               </tr>
               <tr>
                 <td class="item-bullet"><i class="fa fa-bell-o"></i></td>
@@ -370,7 +382,7 @@
               <tr>
                 <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
                 <td class="item-options">Render ALL images with device GPU</td>
-                <td class="item-checkbox"><input id="renderGPU" type="checkbox"></input></td>
+                <td class="item-checkbox"><input id="renderGPU" type="checkbox"></td>
               </tr>
               <tr>
                 <td class="item-bullet"><i class="fa fa-bell-o"></i></td>
@@ -387,7 +399,7 @@
               <tr>
                 <td class="item-bullet"><i class="fa fa-check-circle"></i></td>
                 <td class="item-options">Render ALL cached items in the "Manage Cache" tab</td>
-                <td class="item-checkbox"><input id="renderCache" type="checkbox"></input></td>
+                <td class="item-checkbox"><input id="renderCache" type="checkbox"></td>
               </tr>
               <tr>
                 <td class="item-bullet"><i class="fa fa-bell-o"></i></td>

@@ -144,6 +144,7 @@ config.UI.element = {
           button.appendChild(i);
           button.setAttribute("name", name);
           button.setAttribute("type", "search");
+          button.setAttribute("title", "Search");
           button.addEventListener("click", function (e) {
             const key = config.UI.page.result.key;
             config.UI.handle.click.for.button[key]();
@@ -172,6 +173,7 @@ config.UI.element = {
           button.appendChild(i);
           button.setAttribute("name", name);
           button.setAttribute("type", "trash");
+          button.setAttribute("title", "Clear list");
           button.addEventListener("click", function (e) {
             config.UI.handle.trash.for.result();
             config.app.notifications.vibrate.action(e, this);

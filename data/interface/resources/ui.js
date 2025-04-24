@@ -26,7 +26,12 @@ config.UI = {
         if (cls) td.setAttribute("class", cls);
         const button = document.createElement('button');
         const i = document.createElement('i');
-        if (type) button.setAttribute("type", type);
+        if (type) {
+          button.setAttribute("type", type);
+          if (type === "refresh") {
+            button.title = "Refresh Episodes";
+          }
+        }
         /*  */
         button.addEventListener("click", function (e) {
           config.app.notifications.vibrate.action(e, this);

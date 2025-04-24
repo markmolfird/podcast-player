@@ -4,6 +4,7 @@ config.UI.button = {
       const td = document.createElement('td');
       td.setAttribute("class", "single");
       for (let id in obj) {
+        const name = obj[id];
         const i = document.createElement('i');
         const button = document.createElement('button');
         /*  */
@@ -13,7 +14,9 @@ config.UI.button = {
           config.UI.button.action(this, this.getAttribute("type"));
         });
         /*  */
-        i.setAttribute("class", "fa fa-" + (obj[id] ? obj[id] : id));
+        if (name === "check") button.title = "Subscribed";
+        if (name === "check-square-o") button.title = "Subscribe to this podcast";
+        i.setAttribute("class", "fa fa-" + (name ? name : id));
         button.appendChild(i);
         td.appendChild(button);
       }
@@ -37,6 +40,8 @@ config.UI.button = {
             config.UI.button.action(this, this.getAttribute("type"));
           });
           /*  */
+          if (id === "eye") button.title = "Mark as read";
+          if (id === "plus") button.title = "Add to playlist";
           i.setAttribute("class", "fa fa-" + (obj[id] ? obj[id] : id));
           button.appendChild(i);
           td.appendChild(button);

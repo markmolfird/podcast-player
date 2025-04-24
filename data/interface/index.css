@@ -49,10 +49,11 @@ body * {
 }
 
 .content {
+  width: 100%;
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-  width: calc(100% + 17px);
+  scrollbar-width: none;
 }
 
 audio {
@@ -485,6 +486,10 @@ input[name=intensity] {
   padding: 0;
 }
 
+.item-c:has(.item-image) .single {
+  height: 74px;
+}
+
 .item-c[type="palette"] {
   max-width: 400px;
   border-spacing: 0;
@@ -645,6 +650,14 @@ table[type="choose"] button {
 
 .item-n .combined button .fa {
   font-size: 150%;
+}
+
+.item-n .single button[type='eye'] .fa {
+  font-size: 150%;
+}
+
+.item-n .single button[type='plus'] .fa {
+  font-size: 170%;
 }
 
 .item-n div {
